@@ -4,12 +4,14 @@
             <%= msg %>
     <% end %>
     </h2>
-    <p style="text-align:center"><h2 style="color:black;">Available Pieces: </h2>
-    <%= image_tag("car_piece.png", size: '40x40', :class => "draggable") %>
-    <%= image_tag("hat_piece.png", size: '40x40', :class => "draggable") %>
-    <%= image_tag("dog_piece.png", size: '40x40', :class => "draggable") %>
-    <%= image_tag("ship_piece.png", size: '40x40', :class => "draggable") %>
-    </p>
+    <div class="droppable">
+        <p style="text-align:center"><h2 style="color:black;">Available Pieces: </h2>
+        <%= image_tag("car_piece.png", size: '40x40', :class => "draggable") %>
+        <%= image_tag("hat_piece.png", size: '40x40', :class => "draggable") %>
+        <%= image_tag("dog_piece.png", size: '40x40', :class => "draggable") %>
+        <%= image_tag("ship_piece.png", size: '40x40', :class => "draggable") %>
+        </p>
+    </div>
     <p style="text-align:center"><h2 style="color:black;">Logged In User: </h2><h5><%= User.find_by_id(current_user.id).email %></h5></p>
     <% if current_user.id == @game.turn_player_id %>
         <p style="text-align:center"><h2 style="color:black">Your move</h2></p>

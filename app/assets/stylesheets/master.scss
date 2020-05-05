@@ -1,9 +1,16 @@
 body {
-    font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+    font-family: "Deutsch", "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
     height: 100%;
     width: 100%;
     margin: auto;
 }
+
+
+@font-face {
+    font-family: "Deutsch";
+    src: asset-url('Deutsch.ttf') format('truetype');
+}
+ 
 
 .flex-container {
     display: flex;
@@ -22,7 +29,7 @@ body {
   }
 
 h1 {
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif
+    font-family: "Deutsch";
 }
 
 .top_bottom_row_container {
@@ -53,6 +60,7 @@ h1 {
     width: 404px;
     height: 60px;
     text-align: center;
+    background-color: gray;
 }
 
 .chance {

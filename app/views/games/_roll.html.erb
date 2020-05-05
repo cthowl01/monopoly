@@ -1,10 +1,10 @@
-<p text-align:center>
-RESULT:
-</p>
 <% if @result %>
     <% die1 = @result.to_s + ".png" %>
     <% die2 = @result2.to_s + ".png" %>
     <%= image_tag(die1, size: '40x40') %> <%= image_tag(die2, size: '40x40') %>
     <br>
+    <% if @result == @result2 %>
+        Roll again
+    <% end %>
 <% end %>
 </p>
