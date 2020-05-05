@@ -1,0 +1,25 @@
+<div class="booyah-box-brown col-10 offset-1">
+    <h2 style="text-align:center">
+    <% flash.each do |type, msg| %>
+            <%= msg %>
+    <% end %>
+    </h2>
+    <p style="text-align:center"><h2 style="color:black;">Game Name: </h2><h2><%= @game.title %><h4></p>
+    <p style="text-align:center"><h2 style="color:black;">Logged In User: </h2><h5><%= User.find_by_id(current_user.id).email %></h5></p>
+    <% if current_user.id == @game.turn_player_id %>
+        <p style="text-align:center"><h2 style="color:black">Your move</h2></p>
+    <% else %>
+        <p style="text-align:center"><h2 style="color:black">Not your move</h2></p>
+    <% end %>
+    <p style="text-align:center"><h2 style="color:black;">Player 1: </h2><h5><%= User.find_by_id(@game.player_1_id).email %></h5></p>
+    <p style="text-align:center"><h2 style="color:white;">Properties: </h2></p>
+    <% @game.properties.where(owner_id: @game.player_1_id).each do |prop| %>
+        <%= prop.name %>
+    <% end %>
+    <p style="text-align:center color:white;">Balance:
+    <%= @game.player_1_balance %></p>
+    <% if @game.player_1_id == @game.turn_player_id %>
+        <p style="text-align:center"><h2 style="color:black">Player 1's turn to move</h2></p>
+    <% end %>
+    <p style="text-align:center"><h2><a href="/">Return to Menu</a></h2></p>
+</div>

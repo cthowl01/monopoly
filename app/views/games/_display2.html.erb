@@ -1,0 +1,30 @@
+<div class="booyah-box-brown col-10 offset-1">
+    <h2 style="text-align:center">
+    <% flash.each do |type, msg| %>
+            <%= msg %>
+    <% end %>
+    </h2>
+    <p style="text-align:center"><h2 style="color:black;">Available Pieces: </h2>
+    <%= image_tag("car_piece.png", size: '40x40', :class => "draggable") %>
+    <%= image_tag("hat_piece.png", size: '40x40', :class => "draggable") %>
+    <%= image_tag("dog_piece.png", size: '40x40', :class => "draggable") %>
+    <%= image_tag("ship_piece.png", size: '40x40', :class => "draggable") %>
+    </p>
+    <p style="text-align:center"><h2 style="color:black;">Logged In User: </h2><h5><%= User.find_by_id(current_user.id).email %></h5></p>
+    <% if current_user.id == @game.turn_player_id %>
+        <p style="text-align:center"><h2 style="color:black">Your move</h2></p>
+    <% else %>
+        <p style="text-align:center"><h2 style="color:black">Not your move</h2></p>
+    <% end %>
+    <% if @game.player_2_id == @game.turn_player_id %>
+        <p style="text-align:center"><h2 style="color:white">Player 2's turn to move</h2></p>
+    <% end %>
+    <p style="text-align:center"><h2 style="color:white;">Player 2: </h2><h5><%= User.find_by_id(@game.player_2_id).email %></h5></p>
+    <p style="text-align:center"><h2 style="color:white;">Properties: </h2></p>
+    <% @game.properties.where(owner_id: @game.player_2_id).each do |prop| %>
+        <%= prop.name %>
+    <% end %>
+    <p style="text-align:center color:white;">Balance:
+    <%= @game.player_2_balance %></p>
+    <p style="text-align:center"><h2><a href="/">Return to Menu</a></h2></p>
+</div>
