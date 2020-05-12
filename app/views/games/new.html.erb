@@ -1,0 +1,11 @@
+<div class="background">
+  <br />
+    <h1>Enter Your Game Details</h1>
+    <%= simple_form_for @game do |f| %>
+      <%= f.input :title %>
+      <br />
+      <%= f.submit 'Create', class: 'btn btn-danger' %>
+    <% end %>
+
+   <br />
+</div>

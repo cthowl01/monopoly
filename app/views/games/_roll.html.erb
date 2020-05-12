@@ -1,0 +1,188 @@
+<script>
+var i;
+for (i = 0; i < 40; i++) {
+	if (document.contains(document.getElementById(i + "-1-" + <%= @user_id1 %>))) {
+	document.getElementById(i + "-1-" + <%= @user_id1 %>).remove();
+	}
+}
+
+var j;
+for (j = 0; j < 40; j++) {
+	if (document.contains(document.getElementById(j + "-1-" + <%= @user_id2 %>))) {
+	document.getElementById(j + "-1-" + <%= @user_id2 %>).remove();
+	}
+}
+
+var position = <%= @usergame1.position %>;
+var piece = "<%= @usergame1.piece %>";
+var user_id = <%= @user_id1 %>;
+
+console.log("piece1:");
+console.log(piece);
+console.log("position1:");
+console.log(position);
+console.log("user_id1:");
+console.log(user_id);
+
+var img = document.createElement("img");
+img.src = piece;
+console.log("img.src:");
+console.log(img.src);
+img.setAttribute("height", "23");
+img.setAttribute("width", "23");
+img.setAttribute("id", position + "-1-" + user_id);
+var src = document.getElementById(position + "-1");
+src.appendChild(img);
+
+var position = <%= @usergame2.position %>;
+var piece = "<%= @usergame2.piece %>";
+var user_id = <%= @user_id2 %>;
+
+console.log("piece2:");
+console.log(piece);
+console.log("position2:");
+console.log(position);
+console.log("user_id2:");
+console.log(user_id);
+
+var img = document.createElement("img");
+img.src = piece;
+console.log("img.src:");
+console.log(img.src);
+img.setAttribute("height", "23");
+img.setAttribute("width", "23");
+img.setAttribute("id", position + "-1-" + user_id);
+
+var src = document.getElementById(position + "-1");
+src.appendChild(img);
+</script>
+<% flash.each do |type, msg| %>
+    <%= msg %><br>
+<% end %>
+<% if @game.turn_player_id == current_user.id %>
+    <% if  @usergame.show_roll == true %>
+		<form id="rll">
+			<input type='button' id="rollbtn" onclick="submitFrmRollAjax();" value="Roll">
+		</form>
+	<% end %>
+<% else %>Not your turn to roll.<br>
+	<% if @usergame.last_roll[0] %>	
+	Last move: 
+	<% end %>
+	<br>
+<% end %>
+
+<% if @usergame.last_roll[0] == @usergame.last_roll[1] && @usergame.last_roll[0] %>	
+	<% if @usergame.num_double_rolls == 3 %>
+		<br>Go directly to jail.<br>
+		<form id="jail">
+			<input type='button' id="jailbtn" onclick="submitFrmJailAjax();" value="OK">
+		</form>
+	<% end %>
+<% else %>
+	<% @usergame.update_attributes(num_double_rolls: 0) %>
+<% end %>
+
+<% if @usergame.last_roll[0] %>
+		<% die1 = @usergame.last_roll[0].to_s + ".png" %>
+		<% die2 = @usergame.last_roll[1].to_s + ".png" %>
+		<%= image_tag(die1, size: '30x30') %> <%= image_tag(die2, size: '30x30') %>
+		<br>
+		Player rolls a <%= @usergame.last_roll[0] + @usergame.last_roll[1] %> and lands on <%= @property.name %>.
+		<br>
+
+
+	<% if @game.turn_player_id == current_user.id %>
+
+				<% if @property.property_type == "regular" || @property.property_type == "faith" || @property.property_type == "offer" %>
+					It is 
+
+					<% if @property.owner_id == 0 %>
+						not
+					<% end %>
+
+					owned<% if @property.owner_id == current_user.id %> by you<% end %>.
+					
+					<br>
+					<% if @property.owner_id == 0  %>
+
+						<% if @usergame.balance >= @property.cost %>
+							Would you like to buy it?
+							<form id="purchase">
+								<input type='button' id="purchasebtn" onclick="submitFrmPurchaseAjax();" value="Yes">
+							</form>
+
+							<form id="no_purchase">
+								<input type='button' onclick="submitFrmPassAjax();" value="No">
+							</form>
+
+						<% else %>
+
+						You cannot buy this property due to insufficient funds.
+
+						<% end %>
+
+					<% elsif @property.owner_id != current_user.id %>
+
+						<% ownerusergame = UserGame.find_by(game_id: params[:id], user_id: @property.owner_id) %>
+
+						You owe <%= ownerusergame.calculate_rent(@property.div_id) %> in rent.<br>
+
+						<form id="pay_rent">
+							<input type='button' id="payrentbtn" onclick="submitFrmPayRentAjax();" value="Pay Rent">
+						</form>
+
+					<% else %>
+						Enjoy your property.
+						<% if @usergame.last_roll[0] == @usergame.last_roll[1] && @usergame.last_roll[0] %>
+							<br>Roll again<br>
+						<% else %>
+							<% if @game.turn_player_id == current_user.id %>
+								<form id="no_purchase">
+									<input type='button' id="passbtn" onclick="submitFrmPassAjax();" value="OK">
+								</form>
+							<% end %>
+						<% end %>
+					<% end %>
+
+				<% elsif @property.property_type == "chance" %>
+					Feeling lucky?
+					<% if @usergame.last_roll[0] == @usergame.last_roll[1] && @usergame.last_roll[0] %>
+							<br>Roll again<br>
+					<% else %>
+						<% if @game.turn_player_id == current_user.id %>
+							<form id="chance">
+								<input type='button' id="chancebtn" onclick="submitFrmChanceAjax();" value="OK">
+							</form>
+						<% end %>
+					<% end %>
+				<% elsif @property.property_type == "penalty" %>
+					Pay up!
+					<% if @usergame.last_roll[0] == @usergame.last_roll[1] && @usergame.last_roll[0] %>
+							<% @usergame.update_attributes(balance: @usergame.balance - 2) %>
+							<br>Roll again<br>
+					<% else %>
+						<% if @game.turn_player_id == current_user.id %>
+							<form id="penalty">
+								<input type='button' id="penaltybtn" onclick="submitFrmPenaltyAjax();" value="OK">
+							</form>
+						<% end %>
+					<% end %>
+				<% elsif @property.name == "Go To Jail" %>
+					<form id="no_purchase">
+						<input type='button' id="passbtn" onclick="submitFrmPassAjax();" value="OK">
+					</form>
+				<% else %>
+					<% if @usergame.last_roll[0] == @usergame.last_roll[1] && @usergame.last_roll[0] %>
+							<br>Roll again<br>
+					<% else %>
+						<% if @game.turn_player_id == current_user.id %>
+							<form id="no_purchase">
+								<input type='button' id="passbtn" onclick="submitFrmPassAjax();" value="OK">
+							</form>
+						<% end %>
+					<% end %>
+				<% end %>
+
+	<% end %>
+<% end %>

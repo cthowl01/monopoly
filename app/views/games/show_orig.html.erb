@@ -1,0 +1,283 @@
+
+<div class="flex-container">
+
+    <div class="column" id="left-column">
+            <%= render "display", locals: {:game => @game} %>
+    </div>
+
+    <div class="container">
+        <div class="top_bottom_row_container"> 
+            <div class="square">Go to Jail</div>
+            <div class="top-bottom-rect">
+                <div class="top-bottom-footer">$4</div>
+                <div class="top-bottom-piece-area">
+                    <div class="top-bottom-piece-holder droppable" style="float:left;"></div>
+                    <div class="top-bottom-piece-holder droppable" style="float:left;"></div>
+                </div>
+                <div class="top-bottom-body">Bear Island</div>
+                <div class="top-bottom-header green"></div>
+            </div>
+            <div class="top-bottom-rect">
+                <div class="top-bottom-footer">$4</div>
+                <div class="top-bottom-piece-area">
+                    <div class="top-bottom-piece-holder droppable" style="float:left;"></div>
+                    <div class="top-bottom-piece-holder droppable" style="float:left;"></div>
+                </div>
+                <div class="top-bottom-body">Moat Cailin</div>
+                <div class="top-bottom-header green"></div>
+            </div>
+            <div class="top-bottom-rect">
+                <div class="chance">
+                    <div class="top-bottom-footer"></div>
+                    <div class="top-bottom-piece-area">
+                        <div class="top-bottom-piece-holder droppable" style="float:left;"></div>
+                        <div class="top-bottom-piece-holder droppable" style="float:left;"></div>
+                    </div>
+                    <div class="top-bottom-body"></div>
+                    <div class="top-bottom-header">Chance</div>
+                </div>
+            </div>
+            <div class="top-bottom-rect">
+                <div class="top-bottom-footer">$4</div>
+                <div class="top-bottom-piece-area">
+                        <div class="top-bottom-piece-holder droppable" style="float:left;"></div>
+                        <div class="top-bottom-piece-holder droppable" style="float:left;"></div>
+                </div>
+                <div class="top-bottom-body">Winter fell</div>
+                <div class="top-bottom-header green"></div>
+            </div>
+            <div class="top-bottom-rect">
+                <div class="top-bottom-footer">$5</div>
+                <div class="top-bottom-piece-area">
+                        <div class="top-bottom-piece-holder droppable" style="float:left;"></div>
+                        <div class="top-bottom-piece-holder droppable" style="float:left;"></div>
+                </div>
+                <div class="top-bottom-body">Dragon stone</div>
+                <div class="top-bottom-header purple"></div>
+            </div>
+            <div class="top-bottom-rect">
+                <div class="top-bottom-footer">$5</div>
+                <div class="top-bottom-piece-area">
+                        <div class="top-bottom-piece-holder droppable" style="float:left;"></div>
+                        <div class="top-bottom-piece-holder droppable" style="float:left;"></div>
+                </div>
+                <div class="top-bottom-body">Kings Landing</div>
+                <div class="top-bottom-header purple"></div>
+            </div>
+            <div class="square">Collect $2 Salary When Passing Go</div>
+        </div>
+
+
+        <div class="row_container">
+            <div class="left-right-rect">
+                <div class="left left-right-footer">$3</div>
+                <div class="left-right-piece-area">
+                        <div class="left-right-piece-holder droppable"></div>
+                        <div class="left-right-piece-holder droppable"></div>
+                </div>
+                <div class="left left-right-body">Casterly Rock</div>
+                <div class="left left-right-header yellow"></div>
+            </div>
+            <div class="spacer"><h1>Monopoly</h1></div>
+            <div class="left-right-rect">
+                <div class="right left-right-header brown"></div>
+                <div class="left-right-piece-area">
+                        <div class="left-right-piece-holder droppable" style="float:left;"></div>
+                        <div class="left-right-piece-holder droppable" style="float:left;"></div>
+                </div>
+                <div class="right left-right-body">Hard home</div>
+                <div class="right left-right-footer">$1</div>
+            </div>
+        </div>
+
+        <div class="row_container">
+            <div class="left-right-rect">
+                <div class="offer">
+                    <div class="left left-right-footer">$2</div>
+                    <div class="left-right-piece-area">
+                        <div class="left-right-piece-holder droppable" style="float:left;"></div>
+                        <div class="left-right-piece-holder droppable" style="float:left;"></div>
+                </div>
+                    <div class="left left-right-body"></div>
+                    <div class="left left-right-header">Castle Black</div>
+                    </div>
+                </div>
+                <div class="spacer">
+                </div>
+            <div class="left-right-rect">
+                <div class="chance">
+                    <div class="right left-right-header">Chance</div>
+                    <div class="right left-right-body"></div>
+                    <div class="left-right-piece-area">
+                        <div class="left-right-piece-holder droppable" style="float:left;"></div>
+                        <div class="left-right-piece-holder droppable" style="float:left;"></div>
+                    </div>
+                    <div class="right left-right-footer"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row_container"> 
+            <div class="left-right-rect">
+                <div class="left left-right-footer">$3</div>
+                <div class="left-right-piece-area">
+                        <div class="left-right-piece-holder droppable"></div>
+                        <div class="left-right-piece-holder droppable"></div>
+                </div>
+                <div class="left left-right-body droppable">The Eyrie</div>
+                <div class="left left-right-header yellow"></div>
+            </div>
+            <div class="spacer">
+                <form id="rll">
+                    <input type='button' onclick="submitFrmAjax();" value="Roll">
+                </form>
+            </div>
+            <div class="left-right-rect">
+                <div class="right left-right-header brown"></div><div class="right left-right-body droppable">Cave</div><div class="right left-right-footer">$1</div>
+            </div>
+        </div>
+        <div class="row_container"> 
+            <div class="left-right-rect">
+                <div class="left left-right-footer">$3</div><div class="left left-right-body droppable">Pyke</div><div class="left left-right-header yellow"></div>
+            </div>
+            <div class="spacer">
+                <div id="rl">
+                    <%= render "roll", locals: {:result => @result}%>
+                </div>
+            </div>
+            <div class="left-right-rect">
+                <div class="right left-right-header blue"></div><div class="right left-right-body droppable">Yunkai</div><div class="right left-right-footer">$1</div>
+            </div>
+        </div>
+        <div class="row_container"> 
+            <div class="left-right-rect">
+                <div class="faith">
+                    <div class="left left-right-footer">$2</div><div class="left left-right-body droppable"></div><div class="left left-right-header">The Lord of Light</div>
+                    </div>
+            </div>
+            <div class="spacer"><h1>Game</h1></div>
+            <div class="left-right-rect">
+                <div class="faith">
+                    <div class="right left-right-header">The Old Gods</div><div class="right left-right-body droppable"></div><div class="right left-right-footer">$2</div>
+                    </div>
+                </div>
+        </div>
+        <div class="row_container"> 
+            <div class="left-right-rect">
+                <div class="left left-right-footer">$3</div><div class="left left-right-body droppable">Harren hal</div><div class="left left-right-header red"></div>
+            </div>
+            <div class="spacer"><h1>of</h1></div>
+            <div class="left-right-rect">
+                <div class="right left-right-header blue"></div><div class="right left-right-body droppable">Astapor</div><div class="right left-right-footer">$1</div>
+            </div>
+        </div>
+        <div class="row_container"> 
+            <div class="left-right-rect">
+                <div class="left left-right-footer">$3</div><div class="left left-right-body droppable">The Twins</div><div class="left left-right-header red"></div>
+            </div>
+            <div class="spacer"><h1>Thrones</h1></div>
+            <div class="left-right-rect">
+                <div class="right left-right-header blue"></div><div class="right left-right-body droppable">Meereen</div><div class="right left-right-footer">$1</div>
+            </div>
+        </div>
+
+        <div class="top_bottom_row_container"> 
+            <div class="square">Free Parking</div>
+            <div class="top-bottom-rect">
+                <div class="top-bottom-header orange"></div>
+                <div class="top-bottom-body">Sun spear</div>
+                <div class="top-bottom-piece-area">
+                        <div class="top-bottom-piece-holder droppable" style="float:left;"></div>
+                        <div class="top-bottom-piece-holder droppable" style="float:left;"></div>
+                </div>
+                <div class="top-bottom-footer">$2</div>
+            </div>
+            <div class="top-bottom-rect">
+                <div class="top-bottom-header orange"></div>
+                <div class="top-bottom-body">Water Gardens</div>
+                <div class="top-bottom-piece-area">
+                        <div class="top-bottom-piece-holder droppable" style="float:left;"></div>
+                        <div class="top-bottom-piece-holder droppable" style="float:left;"></div>
+                </div>
+                <div class="top-bottom-footer">$2</div>
+            </div>
+            <div class="top-bottom-rect">
+                <div class="chance">
+                    <div class="top-bottom-header">Chance</div>
+                    <div class="top-bottom-body"></div>
+                    <div class="top-bottom-piece-area">
+                        <div class="top-bottom-piece-holder droppable" style="float:left;"></div>
+                        <div class="top-bottom-piece-holder droppable" style="float:left;"></div>
+                    </div>
+                    <div class="top-bottom-footer"></div>
+                </div>
+            </div>
+            <div class="top-bottom-rect">
+                <div class="top-bottom-header orange"></div>
+                <div class="top-bottom-body">Tower of Joy</div>
+                <div class="top-bottom-piece-area">
+                        <div class="top-bottom-piece-holder droppable" style="float:left;"></div>
+                        <div class="top-bottom-piece-holder droppable" style="float:left;"></div>
+                </div>
+                <div class="top-bottom-footer">$2</div>
+            </div>
+            <div class="top-bottom-rect">
+                <div class="top-bottom-header magenta"></div>
+                <div class="top-bottom-body">High garden</div>
+                <div class="top-bottom-piece-area">
+                        <div class="top-bottom-piece-holder droppable" style="float:left;"></div>
+                        <div class="top-bottom-piece-holder droppable" style="float:left;"></div>
+                </div>
+                <div class="top-bottom-footer">$2</div>
+            </div>
+            <div class="top-bottom-rect">
+                <div class="top-bottom-header magenta"></div>
+                <div class="top-bottom-body">Oldtown</div>
+                <div class="top-bottom-piece-area">
+                        <div class="top-bottom-piece-holder droppable" style="float:left;"></div>
+                        <div class="top-bottom-piece-holder droppable" style="float:left;"></div>
+                </div>
+                <div class="top-bottom-footer">$2</div>
+            </div>
+            <div class="square">Jail/Just Visiting</div>
+        </div>
+    </div>
+
+    <div class="column" id="right-column">
+            <%= render "display2", locals: {:game => @game} %>
+    </div>
+</div>
+
+<%= link_to 'Confirm Move', move_path,  {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#modal-window', class: 'btn btn-primary btn-lg'}  %>
+<div id="modal-window" class="modal hide fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content"></div>
+  </div>
+</div>
+
+<script>
+    function submitFrmAjax(){
+       $.ajax({
+             url : "/roll",
+             data : $("form").serialize()
+        });
+    }
+
+    function init_draggables_and_droppables() {
+
+        $(".draggable").draggable({ revert: 'invalid' });
+        $(".droppable").droppable({
+            drop: function( event, ui ) {
+                console.log("drop");
+            }     
+        });
+
+    }
+
+    jQuery(function($) {
+        init_draggables_and_droppables();
+    
+    });
+
+
+</script>
