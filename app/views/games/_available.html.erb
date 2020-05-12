@@ -1,0 +1,17 @@
+<% @games.available.each do |game| %>
+    <div class="booyah-box col-10 offset-1">
+        <h1><%= game.title %></h1>
+        <% if game.user.present? %>
+          <small><%= game.user.email %></small>
+        <% end %>
+        <%= simple_form_for game do |f| %>
+          <% if game.user.present? %>
+              <% if game.user.id != current_user.id %>
+                  <%= f.submit 'Join', class: 'btn btn-danger' %>
+              <% end %>
+          <% end %>
+        <% end %>
+      </div>
+    <% end %>
+  <br />
+</div>

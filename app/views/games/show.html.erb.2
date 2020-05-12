@@ -1,0 +1,279 @@
+
+<div class="flex-container">
+
+    <div class="column" id="left-column">
+            <%= render "display", locals: {:game => @game} %>
+    </div>
+
+    <div class="wrapper">
+        <div class="box a square droppable" id="30">Go to Jail<div id="30-1"></div></div>
+        <div class="box top-property b" id="31">
+            <div class="box top-property-footer">$4</div>
+            <div class="box top-property-piece-area droppable" id="31-1"></div>
+            <div class="box top-property-body">Bear Island</div>
+            <div class="box top-property-header green"></div>
+        </div>
+        <div class="box top-property c" id="32">
+            <div class="box top-property-footer">$4</div>
+            <div class="box top-property-piece-area droppable" id="32-1"></div>
+            <div class="box top-property-body">Moat Cailin</div>
+            <div class="box top-property-header green"></div>
+        </div>
+        <div class="box top-property d" id="33">
+            <div class="box top-property-footer blue"></div>
+            <div class="box top-property-piece-area blue droppable" id="33-1"></div>
+            <div class="box top-property-body blue">Chance</div>
+            <div class="box top-property-header blue"></div>
+        </div>
+        <div class="box top-property e" id="34">
+            <div class="box top-property-footer">$4</div>
+            <div class="box top-property-piece-area droppable" id="34-1"></div>
+            <div class="box top-property-body">Winter fell</div>
+            <div class="box top-property-header green"></div>
+        </div>
+        <div class="box top-property f" id="35">
+            <div class="box top-property-footer faith">$2</div>
+            <div class="box top-property-piece-area black droppable" id="35-1"></div>
+            <div class="box top-faith-space">The Seven</div>
+        </div>
+        <div class="box top-property g" id="36">
+            <div class="box top-property-footer blue"></div>
+            <div class="box top-property-piece-area blue droppable" id="36-1"></div>
+            <div class="box top-property-body blue">Chance</div>
+            <div class="box top-property-header blue"></div>
+        </div>
+        <div class="box top-property h" id="37">
+            <div class="box top-property-footer">$4</div>
+            <div class="box top-property-piece-area droppable" id="37-1"></div>
+            <div class="box top-property-body">Dragon stone</div>
+            <div class="box top-property-header purple"></div>
+        </div>
+        <div class="box top-property ii" id="38">
+            <div class="box top-property-footer brown">Pay $2</div>
+            <div class="box top-property-piece-area brown droppable" id="38-1"></div>
+            <div class="box top-property-body brown">Iron Bank</div>
+            <div class="box top-property-header brown"></div>
+        </div>
+        <div class="box top-property jj" id="39">
+            <div class="box top-property-footer">$5</div>
+            <div class="box top-property-piece-area droppable" id="39-1"></div>
+            <div class="box top-property-body">Kings Landing</div>
+            <div class="box top-property-header purple"></div>
+        </div>
+        <div class="box go square droppable" id="0">Collect $2 Salary When Passing Go
+            <div id="0-1"></div></div>
+        <div class="box left-property" id="29">
+            <div class="box left-property-footer">$3</div>
+            <div class="box left-property-piece-area droppable" id="29-1"></div>
+            <div class="box left-property-body">Casterly Rock</div>
+            <div class="box left-property-header yellow"></div>
+        </div>
+        <div class="box middle-spacer"><h1>Monopoly</h1></div>
+        <div class="box right-property" id="1">
+            <div class="box right-property-header brown"></div>
+            <div class="box right-property-body">Hard home</div>
+            <div class="box right-property-piece-area droppable" id="1-1"></div>
+            <div class="box right-property-footer">$1</div>
+        </div>
+        <div class="box left-property" id="28">
+            <div class="box left-property-footer">$3</div>
+            <div class="box left-property-piece-area droppable" id="28-1"></div>
+            <div class="box left-offer-space">Castle Black</div>
+        </div>
+        <div class="box middle-spacer"></div>
+        <div class="box right-property" id="2">
+            <div class="box right-property-header blue"></div>
+            <div class="box right-property-body blue">Chance</div>
+            <div class="box right-property-piece-area blue droppable" id="2-1"></div>
+            <div class="box right-property-footer blue"></div>
+        </div>
+        <div class="box left-property" id="27">
+            <div class="box left-property-footer">$3</div>
+            <div class="box left-property-piece-area droppable" id="27-1"></div>
+            <div class="box left-property-body">The Eyrie</div>
+            <div class="box left-property-header yellow"></div>
+        </div>
+        <div class="box middle-spacer"></div>
+        <div class="box right-property" id="3">
+            <div class="box right-property-header brown"></div>
+            <div class="box right-property-body">Cave</div>
+            <div class="box right-property-piece-area droppable" id="3-1"></div>
+            <div class="box right-property-footer">$1</div>
+        </div>
+        <div class="box left-property" id="26">
+            <div class="box left-property-footer">$3</div>
+            <div class="box left-property-piece-area droppable" id="26-1"></div>
+            <div class="box left-property-body">Pyke</div>
+            <div class="box left-property-header yellow"></div>
+        </div>
+        <div class="box middle-spacer">
+            <% if @game.turn_player_id == current_user.id %>
+                <form id="rll">
+                    <input type='button' onclick="submitFrmAjax();" value="Roll">
+                </form>
+            <% end %>
+        </div>
+        <div class="box right-property" id="4">
+            <div class="box right-property-header brown"></div>
+            <div class="box right-property-body brown">Dothraki Tribute</div>
+            <div class="box right-property-piece-area brown droppable" id="4-1"></div>
+            <div class="box right-property-footer brown">Pay $2</div>
+        </div>
+        <div class="box left-property" id="25">
+            <div class="box left-property-footer faith">$2</div>
+            <div class="box left-property-piece-area black droppable" id="25-1"></div>
+            <div class="box left-faith-space">Lord of Light</div>
+        </div>
+        <div class="box middle-spacer">
+             <div id="rl">
+                    <%= render "roll", locals: {:result => @result}%>
+             </div>
+        </div>
+        <div class="box right-property" id="5">
+            <div class="box right-faith-space">The Old Gods</div>
+            <div class="box right-property-piece-area black droppable" id="5-1"></div>
+            <div class="box right-property-footer faith">$2</div>
+        </div>
+        <div class="box left-property" id="24">
+            <div class="box left-property-footer">$3</div>
+            <div class="box left-property-piece-area droppable" id="24-1"></div>
+            <div class="box left-property-body">River run</div>
+            <div class="box left-property-header red"></div>
+        </div>
+        <div class="box middle-spacer"></div>
+        <div class="box right-property" id="6">
+            <div class="box right-property-header powderblue"></div>
+            <div class="box right-property-body">Yunkai</div>
+            <div class="box right-property-piece-area droppable" id="6-1"></div>
+            <div class="box right-property-footer">$1</div>
+        </div>
+        <div class="box left-property" id="23">
+            <div class="box left-property-footer">$3</div>
+            <div class="box left-property-piece-area droppable" id="23-1"></div>
+            <div class="box left-property-body">Harren hall</div>
+            <div class="box left-property-header red"></div>
+        </div>
+        <div class="box middle-spacer"><h1>Game</h1></div>
+        <div class="box right-property" id="7">
+            <div class="box right-property-header blue"></div>
+            <div class="box right-property-body blue">Chance</div>
+            <div class="box right-property-piece-area blue droppable" id="7-1"></div>
+            <div class="box right-property-footer blue"></div>
+        </div>
+        <div class="box left-property" id="22">
+            <div class="box left-property-footer blue"></div>
+            <div class="box left-property-piece-area blue droppable" id="22-1"></div>
+            <div class="box left-property-body blue">Chance</div>
+            <div class="box left-property-header blue"></div>
+        </div>
+        <div class="box middle-spacer"><h1>of</h1></div>
+        <div class="box right-property" id="8">
+            <div class="box right-property-header powderblue"></div>
+            <div class="box right-property-body">Astapor</div>
+            <div class="box right-property-piece-area droppable" id="8-1"></div>
+            <div class="box right-property-footer">$1</div>
+        </div>
+        <div class="box left-property" id="21">
+            <div class="box left-property-footer">$3</div>
+            <div class="box left-property-piece-area droppable" id="21-1"></div>
+            <div class="box left-property-body">The Twins</div>
+            <div class="box left-property-header red"></div>
+        </div>
+        <div class="box middle-spacer"><h1>Thrones</h1></div>
+        <div class="box right-property" id="9">
+            <div class="box right-property-header powderblue"></div>
+            <div class="box right-property-body">Meereen</div>
+            <div class="box right-property-piece-area droppable" id="9-1"></div>
+            <div class="box right-property-footer">$1</div>
+        </div>
+        <div class="box i square droppable" id="20">Free Parking<div id="20-21"></div></div>
+        <div class="box bottom-property j" id="19">
+            <div class="box bottom-property-header orange"></div>
+            <div class="box bottom-property-body">Sun spear</div>
+            <div class="box bottom-property-piece-area droppable" id="19-1"></div>
+            <div class="box bottom-property-footer">$2</div>
+        </div>
+        <div class="box bottom-property k" id="18">
+            <div class="box bottom-property-header orange"></div>
+            <div class="box bottom-property-body">Water Gardens</div>
+            <div class="box bottom-property-piece-area droppable" id="18-1"></div>
+            <div class="box bottom-property-footer">$2</div>
+        </div>
+        <div class="box bottom-property l" id="17">
+            <div class="box bottom-property-header blue"></div>
+            <div class="box bottom-property-body blue">Chance</div>
+            <div class="box bottom-property-piece-area blue droppable" id="17-1"></div>
+            <div class="box bottom-property-footer blue"></div>
+        </div>
+        <div class="box bottom-property m" id="16">
+            <div class="box bottom-property-header orange"></div>
+            <div class="box bottom-property-body">Tower of Joy</div>
+            <div class="box bottom-property-piece-area droppable" id="16-1"></div>
+            <div class="box bottom-property-footer">$2</div>
+        </div>
+        <div class="box bottom-property n" id="15">
+            <div class="box bottom-faith-space">Many Faced God</div>
+            <div class="box bottom-property-piece-area black droppable" id="15-1"></div>
+            <div class="box bottom-property-footer faith">$2</div>
+        </div>
+        <div class="box bottom-property o" id="14">
+            <div class="box bottom-property-header brown"></div>
+            <div class="box bottom-property-body">High garden</div>
+            <div class="box bottom-property-piece-area droppable" id="14-1"></div>
+            <div class="box bottom-property-footer">$2</div>
+        </div>
+        <div class="box bottom-property p" id="13">
+            <div class="box bottom-property-header magenta"></div>
+            <div class="box bottom-property-body">Old town</div>
+            <div class="box bottom-property-piece-area droppable" id="13-1"></div>
+            <div class="box bottom-property-footer">$2</div>
+        </div>
+        <div class="box bottom-property q" id="12">
+            <div class="box bottom-offer-space">Citadel of Maestors</div>
+            <div class="box bottom-property-piece-area powderblue droppable" id="12-1"></div>
+            <div class="box bottom-property-footer powderblue">$2</div>
+        </div>
+        <div class="box bottom-property r" id="11">
+            <div class="box bottom-property-header magenta"></div>
+            <div class="box bottom-property-body">Horn hill</div>
+            <div class="box bottom-property-piece-area droppable" id="11-1"></div>
+            <div class="box bottom-property-footer">$2</div>
+        </div>
+        <div class="box s square droppable" id="10">Jail/Just Visiting<div id="10-1"></div></div>
+        </div>
+
+        <div class="column" id="right-column">
+                <%= render "display2", locals: {:game => @game} %>
+        </div>
+</div>
+
+<%= form_tag "#", :id => 'move'%>
+
+<script>
+    function submitFrmAjax(){
+       $.ajax({
+             url : "/games/<%= @game.id.to_s %>/roll",
+             data : $("form").serialize()
+        });
+    }
+
+    function init_draggables_and_droppables() {
+
+        $(".draggable").draggable({ revert: 'invalid' });
+        $(".droppable").droppable({
+            drop: function( event, ui ) {
+                var pid = $(this).parent().attr("id");
+                console.log("Parent ID:")
+                console.log(pid);
+                console.log("drop");
+                
+            }     
+        });
+
+    }
+
+    jQuery(function($) {
+        init_draggables_and_droppables();
+    });
+
+</script>

@@ -7,8 +7,8 @@ class CreateProperties < ActiveRecord::Migration[5.2]
       t.integer :holdfasts, default: 0
       t.integer :castles, default: 0
       t.boolean :mortgaged, default: false
-      t.integer :cost
-      t.integer :mortgage_cost
+      t.integer :cost, default: 0
+      t.integer :mortgage_cost, default: 0
 
       t.timestamps
     end

@@ -1,176 +1,192 @@
 
-<div class="flex-container">
-
-    <div class="column" id="left-column">
-            <%= render "display", locals: {:game => @game} %>
-    </div>
-
-    <div class="container">
-        <div class="top_bottom_row_container"> 
-            <div class="square">Go to Jail</div>
-            <div class="top-bottom-rect">
-                <div class="top-bottom-footer">$4</div><div class="top-bottom-body droppable">Bear Island</div><div class="top-bottom-header green"></div>
-            </div>
-            <div class="top-bottom-rect">
-                <div class="top-bottom-footer">$4</div><div class="top-bottom-body droppable">Moat Cailin</p></div><div class="top-bottom-header green"></div>
-            </div>
-            <div class="top-bottom-rect">
-                <div class="chance">
-                    <div class="top-bottom-footer"></div><div class="top-bottom-body droppable"></div><div class="top-bottom-header">Chance</div>
-                </div>
-            </div>
-            <div class="top-bottom-rect">
-                <div class="top-bottom-footer">$4</div><div class="top-bottom-body droppable">Winter fell</p></div><div class="top-bottom-header green"></div>
-            </div>
-            <div class="top-bottom-rect">
-                <div class="top-bottom-footer">$5</div><div class="top-bottom-body droppable">Dragon stone</p></div><div class="top-bottom-header purple"></div>
-            </div>
-            <div class="top-bottom-rect">
-                <div class="top-bottom-footer">$5</div><div class="top-bottom-body droppable">Kings Landing</p></div><div class="top-bottom-header purple"></div>
-            </div>
-            <div class="square">Collect $2 Salary When Passing Go</div>
-        </div>
-
-
-        <div class="row_container">
-            <div class="left-right-rect">
-                <div class="left left-right-footer">$3</div><div class="left left-right-body droppable">Casterly Rock</div><div class="left left-right-header yellow"></div>
-            </div>
-            <div class="spacer"><h1>Monopoly</h1></div>
-            <div class="left-right-rect">
-                <div class="right left-right-header brown"></div><div class="right left-right-body droppable">Hard home</div><div class="right left-right-footer">$1</div>
-            </div>
-        </div>
-
-        <div class="row_container">
-            <div class="left-right-rect">
-                <div class="offer">
-                    <div class="left left-right-footer">$2</div><div class="left left-right-body droppable"></div><div class="left left-right-header">Castle Black</div>
-                    </div>
-                </div>
-                <div class="spacer">
-                </div>
-            <div class="left-right-rect">
-                <div class="chance">
-                    <div class="right left-right-header">Chance</div><div class="right left-right-body droppable"></div><div class="right left-right-footer"></div>
-                </div>
-            </div>
-        </div>
-
-        <div class="row_container"> 
-            <div class="left-right-rect">
-                <div class="left left-right-footer">$3</div><div class="left left-right-body droppable">The Eyrie</div><div class="left left-right-header yellow"></div>
-            </div>
-            <div class="spacer">
-                <form id="rll">
-                    <input type='button' onclick="submitFrmAjax();" value="Roll">
-                </form>
-            </div>
-            <div class="left-right-rect">
-                <div class="right left-right-header brown"></div><div class="right left-right-body droppable">Cave</div><div class="right left-right-footer">$1</div>
-            </div>
-        </div>
-        <div class="row_container"> 
-            <div class="left-right-rect">
-                <div class="left left-right-footer">$3</div><div class="left left-right-body droppable">Pyke</div><div class="left left-right-header yellow"></div>
-            </div>
-            <div class="spacer">
-                <div id="rl">
-                    <%= render "roll", locals: {:result => @result}%>
-                </div>
-            </div>
-            <div class="left-right-rect">
-                <div class="right left-right-header blue"></div><div class="right left-right-body droppable">Yunkai</div><div class="right left-right-footer">$1</div>
-            </div>
-        </div>
-        <div class="row_container"> 
-            <div class="left-right-rect">
-                <div class="faith">
-                    <div class="left left-right-footer">$2</div><div class="left left-right-body droppable"></div><div class="left left-right-header">The Lord of Light</div>
-                    </div>
-            </div>
-            <div class="spacer"><h1>Game</h1></div>
-            <div class="left-right-rect">
-                <div class="faith">
-                    <div class="right left-right-header">The Old Gods</div><div class="right left-right-body droppable"></div><div class="right left-right-footer">$2</div>
-                    </div>
-                </div>
-        </div>
-        <div class="row_container"> 
-            <div class="left-right-rect">
-                <div class="left left-right-footer">$3</div><div class="left left-right-body droppable">Harren hal</div><div class="left left-right-header red"></div>
-            </div>
-            <div class="spacer"><h1>of</h1></div>
-            <div class="left-right-rect">
-                <div class="right left-right-header blue"></div><div class="right left-right-body droppable">Astapor</div><div class="right left-right-footer">$1</div>
-            </div>
-        </div>
-        <div class="row_container"> 
-            <div class="left-right-rect">
-                <div class="left left-right-footer">$3</div><div class="left left-right-body droppable">The Twins</div><div class="left left-right-header red"></div>
-            </div>
-            <div class="spacer"><h1>Thrones</h1></div>
-            <div class="left-right-rect">
-                <div class="right left-right-header blue"></div><div class="right left-right-body droppable">Meereen</div><div class="right left-right-footer">$1</div>
-            </div>
-        </div>
-
-        <div class="top_bottom_row_container"> 
-            <div class="square">Free Parking</div>
-            <div class="top-bottom-rect">
-                <div class="top-bottom-header orange"></div><div class="top-bottom-body droppable">Sun spear</div><div class="top-bottom-footer">$2</div>
-            </div>
-            <div class="top-bottom-rect">
-                <div class="top-bottom-header orange"></div><div class="top-bottom-body droppable">Water Gardens</div><div class="top-bottom-footer">$2</div>
-            </div>
-            <div class="top-bottom-rect">
-                <div class="chance">
-                    <div class="top-bottom-header">Chance</div><div class="top-bottom-body droppable"></div><div class="top-bottom-footer"></div>
-                </div>
-            </div>
-            <div class="top-bottom-rect">
-                <div class="top-bottom-header orange"></div><div class="top-bottom-body droppable">Tower of Joy</div><div class="top-bottom-footer">$2</div>
-            </div>
-            <div class="top-bottom-rect">
-                <div class="top-bottom-header magenta"></div><div class="top-bottom-body droppable">High garden</div><div class="top-bottom-footer">$2</div>
-            </div>
-            <div class="top-bottom-rect">
-                <div class="top-bottom-header magenta"></div><div class="top-bottom-body droppable">Oldtown</div><div class="top-bottom-footer">$2</div>
-            </div>
-            <div class="square">Jail/Just Visiting</div>
-        </div>
-    </div>
-
-    <div class="column" id="right-column">
-            <%= render "display2", locals: {:game => @game} %>
-    </div>
+<div id="fc" class="flex-container">
+    <%= render "big-container", locals: {:game => @game, :usergame => @usergame, :property => @property} %>
 </div>
 
+<%= form_tag "#", :id => 'move'%>
+
+<script src="https://cdn.firebase.com/js/client/1.0.18/firebase.js"></script>
+
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/7.11.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.6.1/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.6.1/firebase-database.js"></script>
+
 <script>
-    function submitFrmAjax(){
+    function submitFrmRollAjax(){
+       $("#rollbtn").attr("disabled", true);
        $.ajax({
-             url : "/roll",
+             url : "/games/<%= @game.id.to_s %>/roll",
+             data : $("form").serialize()
+        });
+    }
+
+    function submitFrmPurchaseAjax(){
+       $("#purchasebtn").attr("disabled", true);
+       $.ajax({
+             url : "/games/<%= @game.id.to_s =%>/purchase",
+             data : $("form").serialize()
+        });
+    }
+
+    function submitFrmPassAjax(){
+        $("#passbtn").attr("disabled", true);
+       $.ajax({
+             url : "/games/<%= @game.id.to_s %>/pass",
+             data : $("form").serialize()
+        });
+    }
+
+    function submitFrmPenaltyAjax(){
+        $("#penaltybtn").attr("disabled", true);
+       $.ajax({
+             url : "/games/<%= @game.id.to_s %>/penalty",
+             data : $("form").serialize()
+        });
+    }
+
+    function submitFrmPayRentAjax(){
+        $("#payrentbtn").attr("disabled", true);
+       $.ajax({
+             url : "/games/<%= @game.id.to_s %>/pay_rent",
+             data : $("form").serialize()
+        });
+    }
+
+    function submitFrmChanceAjax(){
+        $("#chancebtn").attr("disabled", true);
+       $.ajax({
+             url : "/games/<%= @game.id.to_s %>/chance",
+             data : $("form").serialize()
+        });
+    }
+
+    function submitFrmJailAjax(){
+        $("#jailbtn").attr("disabled", true);
+       $.ajax({
+             url : "/games/<%= @game.id.to_s %>/jail",
+             data : $("form").serialize()
+        });
+    }
+
+    function submitFrmMortgageAjax(){
+        console.log("mortgage");
+        var mortgage_id = document.forms[0].id.split("-",2)[1]
+       $.ajax({
+             url : "/games/<%= @game.id.to_s %>/mortgage/"+mortgage_id,
+             data : $("form").serialize()
+        });
+    }
+
+    function submitFrmUnmortgageAjax(){
+        console.log("unmortgage");
+        var mortgage_id = document.forms[0].id.split("-",2)[1]
+       $.ajax({
+             url : "/games/<%= @game.id.to_s %>/unmortgage/"+mortgage_id,
+             data : $("form").serialize()
+        });
+    }
+
+    function update_piece() {
+        console.log("update piece");
+        var piece = event.currentTarget.currentSrc.split("/",5)[4].split("_",2)[0]
+        $.ajax({
+             url : "/games/<%= @game.id.to_s %>/update_piece/"+piece,
              data : $("form").serialize()
         });
     }
 
     function init_draggables_and_droppables() {
 
+        var i;
+        for (i = 0; i < 40; i++) {
+            if (document.contains(document.getElementById(i + "-1-" + <%= @user_id1 %>))) {
+            document.getElementById(i + "-1-" + <%= @user_id1 %>).remove();
+            }
+        }
+
+        var j;
+        for (j = 0; j < 40; j++) {
+            if (document.contains(document.getElementById(j + "-1-" + <%= @user_id2 %>))) {
+            document.getElementById(j + "-1-" + <%= @user_id2 %>).remove();
+            }
+        }
+
+        var position = <%= @usergame1.position %>;
+        var piece = "<%= @usergame1.piece %>";
+        var user_id = <%= @user_id1 %>;
+
+        var img = document.createElement("img");
+        img.src = piece;
+        console.log("img.src:");
+        console.log(img.src);
+        img.setAttribute("height", "23");
+        img.setAttribute("width", "23");
+        img.setAttribute("id", position + "-1-" + user_id);
+        var src = document.getElementById(position + "-1");
+        src.appendChild(img);
+
+        var position = <%= @usergame2.position %>;
+        var piece = "<%= @usergame2.piece %>";
+        var user_id = <%= @user_id2 %>;
+
+        var img = document.createElement("img");
+        img.src = piece;
+        console.log("img.src:");
+        console.log(img.src);
+        img.setAttribute("height", "23");
+        img.setAttribute("width", "23");
+        img.setAttribute("id", position + "-1-" + user_id);
+
+        var src = document.getElementById(position + "-1");
+        src.appendChild(img);
+
         $(".draggable").draggable({ revert: 'invalid' });
         $(".droppable").droppable({
             drop: function( event, ui ) {
-
+                var pid = $(this).parent().attr("id");
+                console.log("Parent ID:")
+                console.log(pid);
                 console.log("drop");
-       
+                
             }     
         });
 
     }
 
     jQuery(function($) {
-        init_draggables_and_droppables();
-    
-    });
 
+        //Your web app's Firebase configuration
+        var firebaseConfig = {
+            apiKey: "AIzaSyCa0OdzNtqg2CRUQibJT8ZxYjocMs8M3lQ",
+            authDomain: "fir-chess-270721.firebaseapp.com",
+            databaseURL: "https://fir-chess-270721.firebaseio.com",
+            projectId: "firebase-chess-270721",
+            storageBucket: "firebase-chess-270721.appspot.com",
+            messagingSenderId: "883177546382",
+            appId: "1:883177546382:web:60cc4e9cb5d519c386dfdf",
+            measurementId: "G-WWMKRY87V7"
+        };
+        //Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+
+        var gamesRef = firebase.database().ref('mgames/' + '<%= @game.firebase_id %>');
+
+        gamesRef.on('child_changed', function(snapshot) {
+
+            $.ajax({
+                    type: "GET",
+                    url: "/games/<%= @game.id %>/load_board",
+                    success: function(){
+                    console.log("child changed: load board refresh success"); 
+                    }
+                });
+
+        }, function(error) {
+            console.error(error);
+        });
+
+        init_draggables_and_droppables();
+    });
 
 </script>

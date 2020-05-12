@@ -13,7 +13,7 @@ class HomeController < ApplicationController
           format.js
         end
     
-      end
+    end
     
     def load_available
         @games = Game.all

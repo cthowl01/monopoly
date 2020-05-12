@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_05_020854) do
+ActiveRecord::Schema.define(version: 2020_05_06_165402) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,8 +26,7 @@ ActiveRecord::Schema.define(version: 2020_05_05_020854) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "user_id"
-    t.integer "player_1_balance", default: 30
-    t.integer "player_2_balance", default: 30
+    t.string "firebase_id"
     t.index ["user_id"], name: "index_games_on_user_id"
   end
 
@@ -38,11 +37,30 @@ ActiveRecord::Schema.define(version: 2020_05_05_020854) do
     t.integer "holdfasts", default: 0
     t.integer "castles", default: 0
     t.boolean "mortgaged", default: false
-    t.integer "cost"
-    t.integer "mortgage_cost"
+    t.integer "cost", default: 0
+    t.integer "mortgage_cost", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "owner_id", default: 0
+    t.integer "div_id", default: 0
+    t.string "property_type", default: "regular"
+  end
+
+  create_table "user_games", force: :cascade do |t|
+    t.integer "game_id"
+    t.integer "user_id"
+    t.integer "position", default: 0
+    t.integer "previous_position", default: 0
+    t.integer "num_moves", default: 0
+    t.integer "balance", default: 30
+    t.string "piece", default: "/assets/car_piece.png"
+    t.boolean "jail", default: false
+    t.integer "last_roll", default: [], array: true
+    t.boolean "show_roll", default: true
+    t.integer "num_double_rolls", default: 0
+    t.integer "num_jail_escape_rolls", default: 0
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
