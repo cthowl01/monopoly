@@ -1,0 +1,67 @@
+@import "https://fonts.googleapis.com/css?family=Lato:300,400,700,900"
+
+#chat .chat__header
+  font-family: 'Lato' !important
+  letter-spacing: 1.5px !important
+  height: 50px
+  display: flex
+  flex-direction: row
+  align-items: center
+  position: relative
+  z-index: 11
+  .chat__settings
+    width: 20px
+    height: 20px
+    margin: 0 25px
+    cursor: pointer
+    div
+      height: 2px
+      background: #fff
+      border-radius: 2px
+    div:nth-of-type(1)
+      width: 94%
+      margin-bottom: 4px
+      margin-top: 5px
+    div:nth-of-type(2)
+      width: 57%
+
+  h6
+    font-family: 'Lato' !important
+    letter-spacing: 1.5px !important
+    margin: 0
+    font-size: 19px
+    color: #fff
+    font-weight: 400
+  i
+    margin: 0 25px
+    color: #fff
+    transition: all .3s ease
+    cursor: pointer
+    &:hover
+      color: #eee
+
+#chat .chat__badge
+  position: relative
+#chat .chat__badge[data-badge]:after, .chat__launch.chat__badge[data-badge]:after
+  content: attr(data-badge)
+  display: flex
+  flex-direction: row
+  flex-wrap: wrap
+  justify-content: center
+  align-content: center
+  align-items: center
+  position: absolute
+  top: -7px
+  right: -10px
+  font-size: 12px
+  width: 22px
+  height: 22px
+  border-radius: 50%
+  background: #ff4081
+  color: #fff
+  font-family: 'Lato' !important
+.chat__launch.chat__badge[data-badge]:after
+  position: fixed
+  bottom: 51px
+  right: 14px
+  top: initial

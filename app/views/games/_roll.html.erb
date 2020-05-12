@@ -13,6 +13,7 @@ for (j = 0; j < 40; j++) {
 	}
 }
 
+
 var position = <%= @usergame1.position %>;
 var piece = "<%= @usergame1.piece %>";
 var user_id = <%= @user_id1 %>;
@@ -55,7 +56,54 @@ img.setAttribute("id", position + "-1-" + user_id);
 
 var src = document.getElementById(position + "-1");
 src.appendChild(img);
+
+var m;
+var n;
+for (m = 0; m < 40; m++) {
+	for (n = 0; n < 4; n++) {
+		if (document.contains(document.getElementById(m + "-2-" + n))) {
+		document.getElementById(m + "-2-" + n).remove();
+		}
+	}
+}
+
+<% @game.properties.where("houses > ?", 0).each do |h| %>
+	
+	for (k = 0; k < <%= h.houses %>; k++) {
+
+		var img = document.createElement("img");
+		img.src = "/assets/house.png";
+		img.setAttribute("height", "12");
+		img.setAttribute("width", "12");
+		img.setAttribute("id", <%= h.div_id %> + "-2-" + k);
+		console.log("House id:");
+		console.log(<%= h.div_id %> + "-2-" + k);
+		var src = document.getElementById(<%= h.div_id %> + "-2");
+		src.appendChild(img);
+		console.log("appended");
+	}
+
+<% end %>
+
+<% @game.properties.where("hotels > ?", 0).each do |h| %>
+
+for (k = 0; k < <%= h.hotels %>; k++) {
+
+	var img = document.createElement("img");
+	img.src = "/assets/hotel.png";
+	img.setAttribute("height", "12");
+	img.setAttribute("width", "12");
+	img.setAttribute("id", <%= h.div_id %> + "-2-" + k);
+	console.log("Hotel id:");
+	console.log(<%= h.div_id %> + "-2-" + k);
+	var src = document.getElementById(<%= h.div_id %> + "-2");
+	src.appendChild(img);
+	console.log("appended");
+}
+
+<% end %>
 </script>
+
 <% flash.each do |type, msg| %>
     <%= msg %><br>
 <% end %>
@@ -92,7 +140,7 @@ src.appendChild(img);
 		<br>
 
 
-	<% if @game.turn_player_id == current_user.id %>
+	<% if @game.turn_player_id == current_user.id && @usergame.show_buttons == true %>
 
 				<% if @property.property_type == "regular" || @property.property_type == "faith" || @property.property_type == "offer" %>
 					It is 
@@ -120,17 +168,28 @@ src.appendChild(img);
 
 						You cannot buy this property due to insufficient funds.
 
+						<form id="no_purchase">
+							<input type='button' onclick="submitFrmPassAjax();" value="OK">
+						</form>
+
 						<% end %>
 
 					<% elsif @property.owner_id != current_user.id %>
 
 						<% ownerusergame = UserGame.find_by(game_id: params[:id], user_id: @property.owner_id) %>
 
+						<% if @property.mortgaged == true %>
+						However, it is mortgaged so you don't owe rent.
+
+						<% else %>
+
 						You owe <%= ownerusergame.calculate_rent(@property.div_id) %> in rent.<br>
 
 						<form id="pay_rent">
 							<input type='button' id="payrentbtn" onclick="submitFrmPayRentAjax();" value="Pay Rent">
 						</form>
+
+						<% end %>
 
 					<% else %>
 						Enjoy your property.

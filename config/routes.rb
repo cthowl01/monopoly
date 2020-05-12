@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  mount Chat::Engine => "/chat", as: "chat"
   devise_for :users, :controllers => { registrations: 'registrations' }
   root 'home#index'
   get "/about", :controller => "home", :action => "about"
@@ -22,4 +23,5 @@ Rails.application.routes.draw do
   get 'games/:id/update_piece/:piece', :controller => "games", :action => "update_piece"
   get 'games/:id/mortgage/:mortgage_id', :controller => "games", :action => "mortgage"
   get 'games/:id/unmortgage/:mortgage_id', :controller => "games", :action => "unmortgage"
+  get 'games/:id/house/:house_id', :controller => "games", :action => "house"
 end

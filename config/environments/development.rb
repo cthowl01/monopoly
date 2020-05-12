@@ -1,5 +1,10 @@
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
+  Rails.application.routes.default_url_options = { host: 'localhost:3030' }
+
+  config.action_mailer.default_url_options = { host: 'localhost', port: 3030 }
+
+  config.web_console.whitelisted_ips = '10.0.2.2'
 
   # In the development environment your application's code is reloaded on
   # every request. This slows down response time but is perfect for development

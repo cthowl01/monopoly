@@ -1,0 +1,58 @@
+@import "https://fonts.googleapis.com/css?family=Lato:300,400,700,900"
+
+#chat .new_conversation
+  height: calc(100% - 50px)
+  overflow-y: scroll
+  position: absolute
+  right: 100%
+  transition: 0.5s
+  width: 100%
+  z-index: 13
+  display: flex
+  flex-direction: column
+  &::-webkit-scrollbar
+    visibility: hidden
+  label
+    position: relative
+    margin: 1rem
+    cursor: pointer
+    font-family: "Lato" !important
+    letter-spacing: 1.5px !important
+    padding-left: 40px
+    color: #fff
+    width: calc(100% - 40px - 1rem)
+  .chat__status
+    &:after
+      content: "\2022"
+    &.offline
+      &:after
+        color: hsl(355, 65%, 65%)
+    &.online
+      &:after
+        color: #AED581
+
+  .chat__submit-container
+    margin: 1rem
+    padding: 10px 0
+    width: calc(100% - 1rem)
+    display: flex
+    flex-direction: column
+    justify-content: center
+    align-items: center
+
+  input[type='submit']
+    border: none
+    font-family: "Lato" !important
+    letter-spacing: 1.5px !important
+    font-size: 17px
+    background: transparent
+    padding: 0
+    cursor: pointer
+    transition: all 0.3s ease
+    z-index: 10
+    color: #fff
+    margin: 0px
+
+#chat .chat__errors
+  text-align: center
+  color: #F44336

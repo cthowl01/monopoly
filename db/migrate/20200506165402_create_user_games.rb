@@ -11,6 +11,7 @@ class CreateUserGames < ActiveRecord::Migration[5.2]
       t.boolean :jail, default: false
       t.integer :last_roll, array: true, default: []
       t.boolean :show_roll, default: true
+      t.boolean :show_buttons, default: false
       t.integer :num_double_rolls, default: 0
       t.integer :num_jail_escape_rolls, default: 0
 

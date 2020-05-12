@@ -18,7 +18,7 @@
             <div class="owned-property-unit">
                 <div class="icon <%= prop.color %>"></div>
                 <div class="owned-property-name"><%= prop.name %></div>
-                <div id="mortgage<%= prop.div_id %>" class="mortgage">
+                <div id="mortgage<%= prop.div_id %>" class="mortgage-form">
                 <form id="mortgage<%= prop.div_id %>-<%= prop.div_id %>">
                     <% if prop.mortgaged == false %>
                         <input type='button' onclick="submitFrmMortgageAjax();" value="Mortgage">
@@ -27,9 +27,20 @@
                     <% end %>
                 </form>
                 </div>
+                <div id="house<%= prop.div_id %>" class="house-form">
+                <form id="house<%= prop.div_id %>-<%= prop.div_id %>">
+                    <input type='button' onclick="submitFrmHouseAjax();" value="+1 House"
+                    <% if prop.is_set_owned_by(current_user.id) == false %>
+                        disabled>
+                    <% else %>
+                        >
+                    <% end %>
+                </form>
+                </div>
             </div>
         <% end %>
     </div>
+    <br>
     <p style="text-align:center color:white;">Balance:
     <%= UserGame.find_by(user_id: @game.player_1_id, game_id: @game.id).balance %></p>
     <% if @game.player_1_id == @game.turn_player_id %>

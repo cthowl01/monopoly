@@ -16,6 +16,14 @@ gem 'games_dice', '~> 0.3.12'
 
 gem 'mini_magick'
 
+gem 'aws-sdk-s3'
+
+gem 'chat', '~> 1.0.0'
+
+gem 'haml'
+
+gem 'haml-rails'
+
 gem 'firebase', '~> 0.2.8'
 
 gem 'google-cloud-firestore', '~> 1.4.0'

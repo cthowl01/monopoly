@@ -1,0 +1,62 @@
+.chat__launch
+  position: fixed
+  right: 15px
+  bottom: 15px
+  border-radius: 50%
+  height: 56px
+  margin: auto
+  min-width: 56px
+  width: 56px
+  padding: 0
+  overflow: hidden
+  box-shadow: 0 1px 1.5px 0 rgba(0, 0, 0, 0.12), 0 1px 1px 0 rgba(0, 0, 0, 0.24)
+  line-height: normal
+  border: none
+  will-change: box-shadow
+  transition: box-shadow 0.2s cubic-bezier(0.4, 0, 1, 1), background-color 0.2s cubic-bezier(0.4, 0, 0.2, 1), color 0.2s cubic-bezier(0.4, 0, 0.2, 1)
+  outline: none
+  cursor: pointer
+  text-decoration: none
+  transition: 0.5s
+  transform: scale(1)
+  background: #fff
+  i
+    font-size: 30px
+  &:active
+    box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12), 0 2px 4px -1px rgba(0, 0, 0, 0.2)
+
+
+.chat__start-new
+  position: fixed
+  right: 10px
+  bottom: 15px
+  border-radius: 50%
+  height: 50px
+  margin: auto
+  min-width: 50px
+  width: 50px
+  padding: 0
+  overflow: hidden
+  box-shadow: 0 1px 1.5px 0 rgba(0, 0, 0, 0.12), 0 1px 2px 0 rgba(0, 0, 0, 0.24)
+  line-height: normal
+  border: none
+  will-change: box-shadow
+  transition: box-shadow 0.2s cubic-bezier(0.4, 0, 1, 1), background-color 0.2s cubic-bezier(0.4, 0, 0.2, 1), color 0.2s cubic-bezier(0.4, 0, 0.2, 1)
+  outline: none
+  cursor: pointer
+  text-decoration: none
+  transition: 0.5s
+  transform: scale(1)
+  z-index: 15
+  background: #fff
+  i
+    position: absolute
+    left: 12px
+    top: 12px
+    font-size: 25px
+    color: #212121
+  &:active
+    box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12), 0 2px 4px -1px rgba(0, 0, 0, 0.2)
+
+.chat__disappear
+  transform: scale(0)
