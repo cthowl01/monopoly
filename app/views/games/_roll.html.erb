@@ -131,6 +131,10 @@ for (k = 0; k < <%= h.hotels %>; k++) {
 	<% @usergame.update_attributes(num_double_rolls: 0) %>
 <% end %>
 
+<% if @usergame.position < @usergame.previous_position %>
+	<br>You collected $2 for passing Go.<br>
+<% end %>
+
 <% if @usergame.last_roll[0] %>
 		<% die1 = @usergame.last_roll[0].to_s + ".png" %>
 		<% die2 = @usergame.last_roll[1].to_s + ".png" %>
@@ -228,8 +232,8 @@ for (k = 0; k < <%= h.hotels %>; k++) {
 						<% end %>
 					<% end %>
 				<% elsif @property.name == "Go To Jail" %>
-					<form id="no_purchase">
-						<input type='button' id="passbtn" onclick="submitFrmPassAjax();" value="OK">
+					<form id="jail">
+						<input type='button' id="jailbtn" onclick="submitFrmJailAjax();" value="Go To Jail">
 					</form>
 				<% else %>
 					<% if @usergame.last_roll[0] == @usergame.last_roll[1] && @usergame.last_roll[0] %>
