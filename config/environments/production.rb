@@ -1,6 +1,6 @@
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
-  Rails.application.routes.default_url_options[:host]= 'gotmonopoly.herokuapp.com'
+  Rails.application.routes.default_url_options = { host: 'gotmonopoly.herokuapp.com', protocol: 'https' }
 
   # Code is not reloaded between requests.
   config.cache_classes = true
