@@ -9,7 +9,6 @@
     <%= image_tag("iron-throne.png", size: "100x100", class: "throne") %>
     <%= image_tag User.find_by(id: @game.player_2_id).avatar.variant(resize: "50x50"), class: "rounded-circle" %>
     </div>
-    <p style="text-align:center"><h2 style="color:black;">Logged In User: </h2><h5><%= User.find_by_id(current_user.id).email %></h5></p>
     <p style="text-align:center"><h2 style="color:white;">Player 2: </h2><h5><%= User.find_by_id(@game.player_2_id).email %></h5></p>
     <p style="text-align:center"><h2 style="color:white;">Properties: </h2></p>
     <div class="owned-property-wrapper">
