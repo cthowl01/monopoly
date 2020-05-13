@@ -14,7 +14,7 @@ for (j = 0; j < 40; j++) {
 }
 
 var position = <%= @usergame1.position %>;
-var piece = "<%= asset_path(@usergame1.piece) %>";
+var piece = "<%= image_path(@usergame1.piece) %>";
 var user_id = <%= @user_id1 %>;
 
 console.log("piece1:");
@@ -35,7 +35,7 @@ var src = document.getElementById(position + "-1");
 src.appendChild(img);
 
 var position = <%= @usergame2.position %>;
-var piece = "<%= asset_path(@usergame2.piece) %>";
+var piece = "<%= image_path(@usergame2.piece) %>";
 var user_id = <%= @user_id2 %>;
 
 console.log("piece2:");
@@ -71,7 +71,7 @@ for (m = 0; m < 40; m++) {
 	for (k = 0; k < <%= h.houses %>; k++) {
 
 		var img = document.createElement("img");
-		img.src = "/assets/images/house.png";
+		img.src = "<%= image_path("house.png") %>";
 		img.setAttribute("height", "12");
 		img.setAttribute("width", "12");
 		img.setAttribute("id", <%= h.div_id %> + "-2-" + k);
@@ -89,7 +89,7 @@ for (m = 0; m < 40; m++) {
 for (k = 0; k < <%= h.hotels %>; k++) {
 
 	var img = document.createElement("img");
-	img.src = "/assets/images/hotel.png";
+	img.src = "<%= image_path("hotel.png") %>";
 	img.setAttribute("height", "12");
 	img.setAttribute("width", "12");
 	img.setAttribute("id", <%= h.div_id %> + "-2-" + k);

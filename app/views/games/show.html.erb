@@ -123,7 +123,7 @@
         }
 
         var position = <%= @usergame1.position %>;
-        var piece = "<%= asset_path(@usergame1.piece) %>";
+        var piece = "<%= image_path(@usergame1.piece) %>";
         var user_id = <%= @user_id1 %>;
 
         var img = document.createElement("img");
@@ -137,7 +137,7 @@
         src.appendChild(img);
 
         var position = <%= @usergame2.position %>;
-        var piece = "<%= asset_path(@usergame2.piece) %>";
+        var piece = "<%= image_path(@usergame2.piece) %>";
         var user_id = <%= @user_id2 %>;
 
         var img = document.createElement("img");
