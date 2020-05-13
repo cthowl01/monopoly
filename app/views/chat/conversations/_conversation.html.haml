@@ -1,0 +1,23 @@
+= link_to [chat, conversation], remote: true, id: "chat__show-#{conversation.id}" do
+  .avatar_container{ class: chat_avatar_count(conversation) }
+    - if chat_avatar_count(conversation) == "count_default"
+      = chat_avatars(conversation).sample.html_safe
+      .chat_count
+        %span
+          = conversation_user_count(conversation)
+    - else
+      = chat_avatars(conversation).join("").html_safe
+  .chat__glance
+    .chat__glance-name-date
+      .name
+        - if conversation.users.to_a.size > 2
+          Group Chat
+        - else
+          = conversation.users.where.not(id: current_user.id).first.first_name
+      .flex
+      .date
+        - if conversation.last_message.present?
+          = time_ago_in_words conversation.last_message&.created_at
+          ago
+    .chat__glance-last-message
+      = raw conversation.last_message&.text
