@@ -4,23 +4,12 @@
             <%= msg %>
     <% end %>
     </h2>
-    <div class="droppable">
-        <p style="text-align:center"><h2 style="color:black;">Available Pieces:<br></h2>
-        <%= image_tag("car_piece.png", size: '40x40', :class => "draggable", :onClick => "update_piece(event)") %>
-        <%= image_tag("hat_piece.png", size: '40x40', :class => "draggable", :onClick => "update_piece(event)") %>
-        <%= image_tag("dog_piece.png", size: '40x40', :class => "draggable", :onClick => "update_piece(event)") %>
-        <%= image_tag("ship_piece.png", size: '40x40', :class => "draggable", :onClick => "update_piece(event)") %>
-        </p>
+    <br><h2 style="color:black;">Game Name: </h2><h2><%= @game.title %></h2><br><br>
+    <div class="throne-wrapper">
+    <%= image_tag("iron-throne.png", size: "100x100", class: "throne") %>
+    <%= image_tag User.find_by(id: @game.player_2_id).avatar.variant(resize: "50x50"), class: "rounded-circle" %>
     </div>
     <p style="text-align:center"><h2 style="color:black;">Logged In User: </h2><h5><%= User.find_by_id(current_user.id).email %></h5></p>
-    <% if current_user.id == @game.turn_player_id %>
-        <p style="text-align:center"><h2 style="color:black">Your move</h2></p>
-    <% else %>
-        <p style="text-align:center"><h2 style="color:black">Not your move</h2></p>
-    <% end %>
-    <% if @game.users.last.id == @game.turn_player_id %>
-        <p style="text-align:center"><h2 style="color:white">Player 2's turn to move</h2></p>
-    <% end %>
     <p style="text-align:center"><h2 style="color:white;">Player 2: </h2><h5><%= User.find_by_id(@game.player_2_id).email %></h5></p>
     <p style="text-align:center"><h2 style="color:white;">Properties: </h2></p>
     <div class="owned-property-wrapper">

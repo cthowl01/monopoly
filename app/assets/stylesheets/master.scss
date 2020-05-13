@@ -1,3 +1,28 @@
+.rounded-circle {
+  grid-row: 1;
+  grid-column: 1;
+  border-radius: .5em;
+  z-index: 0;
+  }
+
+.throne-wrapper {
+  display: grid;
+  justify-items: center;
+  align-items: center;
+  justify-content: center;
+  grid-gap: 5px 5px;
+  grid-template-columns: repeat(1, 1fr);
+  grid-template-rows: 75px;
+  min-width: 0px;
+  min-height: 0px;
+}
+
+.throne {
+  grid-row: 1;
+  grid-column: 1;
+  position: relative;
+}
+
 .form-special {
   width: 180px;
   display: inline-block;
