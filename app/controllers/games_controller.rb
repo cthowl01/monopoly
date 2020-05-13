@@ -72,7 +72,7 @@ class GamesController < ApplicationController
 
             @usergame = UserGame.find_by(game_id: @game.id, user_id: current_user.id)
 
-            @usergame.update_attributes(piece: "/assets/hat_piece.png")
+            @usergame.update_attributes(piece: "hat_piece.png")
 
             redirect_to game_path(@game)
     end
@@ -128,6 +128,10 @@ class GamesController < ApplicationController
             @usergame.update_attributes(num_double_rolls: @usergame.num_double_rolls+1)
         end
 
+        @usergame.update_attributes(show_buttons: true)
+
+        @property = @game.properties.find_by(div_id: @usergame.position)
+
         respond_to do |format|
             format.js
         end
@@ -160,7 +164,7 @@ class GamesController < ApplicationController
 
         @rent = @ownerusergame.calculate_rent(@property.div_id)
 
-        if @usergame.balance >= @property.cost
+        if @usergame.balance >= @rent
             @usergame.update_attributes(balance: @usergame.balance - @rent)
             @ownerusergame.update_attributes(balance: @ownerusergame.balance + @rent)
         else
@@ -170,6 +174,7 @@ class GamesController < ApplicationController
         flash.now[:notice] = "A Lannister always pays his debts."
 
         if @usergame.last_roll[0] != @usergame.last_roll[1]
+            @usergame.update_attributes(show_buttons: false)
             @game.toggle_player_turn
         end
 
@@ -190,6 +195,7 @@ class GamesController < ApplicationController
         end
     
         if @usergame.last_roll[0] != @usergame.last_roll[1]
+            @usergame.update_attributes(show_buttons: false)
             @game.toggle_player_turn
         end
 
@@ -204,6 +210,7 @@ class GamesController < ApplicationController
     def pass
         
         if @usergame.last_roll[0] != @usergame.last_roll[1]
+            @usergame.update_attributes(show_buttons: false)
             @game.toggle_player_turn
         end
 
@@ -221,10 +228,9 @@ class GamesController < ApplicationController
         else
             flash.now[:notice] = "You're broke!"
         end
-
-        @usergame.save
     
         if @usergame.last_roll[0] != @usergame.last_roll[1]
+            @usergame.update_attributes(show_buttons: false)
             @game.toggle_player_turn
         end
 
@@ -273,9 +279,37 @@ class GamesController < ApplicationController
 
     end
 
+    def house
+
+        house_property = params[:house_id]
+
+        @property = @game.properties.find_by(div_id: house_property)
+
+        if @property.houses < 4
+            @property.update_attributes(houses: @property.houses + 1)
+        else
+            @property.update_attributes(houses: 0)
+            @property.update_attributes(hotels: 1)
+        end
+
+        owner_id = @property.owner_id
+
+        ownerusergame = UserGame.find_by(user_id: owner_id, game_id: current_game.id)
+
+        ownerusergame.update_attributes(balance: ownerusergame.balance - @property.cost)
+
+        @game.refresh_firebase
+
+        respond_to do |format|
+            format.js
+        end
+
+    end
+
     def chance
 
         if @usergame.last_roll[0] != @usergame.last_roll[1]
+            @usergame.update_attributes(show_buttons: false)
             @game.toggle_player_turn
         end
 
@@ -292,6 +326,7 @@ class GamesController < ApplicationController
         @usergame.update_attributes(jail: true, position: 10, num_double_rolls: 0)
 
         if @usergame.last_roll[0] != @usergame.last_roll[1]
+            @usergame.update_attributes(show_buttons: false)
             @game.toggle_player_turn
         end
 
@@ -312,7 +347,7 @@ class GamesController < ApplicationController
 
     def update_piece
 
-        piece_url = "/assets/" + params[:piece] + "_piece.png"
+        piece_url = params[:piece] + "_piece.png"
 
         respond_to do |format|
             format.js

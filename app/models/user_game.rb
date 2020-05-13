@@ -31,12 +31,12 @@ class UserGame < ApplicationRecord
 
     rent = property.cost
 
-    if property.castles != 0 
+    if property.hotels != 0 
       return rent * 10
     end
 
-    if property.holdfasts != 0 
-      return rent * (property.holdfasts + 3)
+    if property.houses != 0 
+      return rent * (property.houses + 3)
     end
 
     if game.properties.where(color: property.color, owner_id: user.id).count == 

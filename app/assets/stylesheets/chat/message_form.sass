@@ -1,0 +1,53 @@
+@import "https://fonts.googleapis.com/css?family=Lato:300,400,700,900"
+
+#chat .new_message
+  margin: 0px 20px 25px 20px
+  flex-direction: column
+  display: flex
+  position: relative
+  .chat__insert-image
+    position: absolute
+    right: 28px
+    top: 4px
+    color: #bdbdbd
+    transition: all 0.3s ease
+    z-index: 10
+    cursor: pointer
+    font-size: 22px
+    &:hover
+      color: #fff
+  input[type='text'], textarea
+    font-size: 17px
+    font-family: "Lato" !important
+    letter-spacing: 1.5px !important
+    background: transparent
+    border: none
+    font-weight: 300
+    border-bottom: 1px solid rgba(0,0,0,.26)
+    height: 28px
+    outline: none
+    resize: none
+  .bar, .emojionearea-bar
+    position: relative
+    &:before, &:after
+      content: ''
+      height: 2px
+      width: 0
+      bottom: 0px
+      position: absolute
+      background: #fff
+      transition: 0.2s ease all
+      -moz-transition: 0.2s ease all
+      -webkit-transition: 0.2s ease all
+    &:before
+      left: 50%
+    &:after
+      right: 50%
+  input[type='text']:focus ~ .bar:before, input[type='text']:focus ~ .bar:after,
+  textarea:focus ~ .bar:before, textarea:focus ~ .bar:after, .emojionearea-editor:focus ~ .emojionearea-bar:before, .emojionearea-editor:focus ~ .emojionearea-bar:after
+    width: 50%
+  input[type='file']
+    display: none !important
+  .emojionearea .emojionearea-editor
+    border-bottom: 1px solid #bdbdbd !important
+    color: #fff !important

@@ -1,0 +1,25 @@
+<% if @conversation.errors.messages[:sessions].blank? %>
+  $('#chat .chat__list').html("<%= j render 'chat/conversations/index' %>");
+  $('.new_conversation').replaceWith("<%= j render 'chat/conversations/new' %>");
+  $('.current_chat').html("<%= j render 'chat/conversations/show' %>");
+  $('.new_message textarea').emojioneArea();
+  App.chat_message.followCurrentChat();
+  $("#new_message").fileupload();
+  if($("#chat__show-<%= @conversation.id %>").hasClass('chat__has_new_message')) {
+    App.chat_notification.decrement();
+    $("#chat__show-<%= @conversation.id %>").removeClass('chat__has_new_message')
+  }
+  $('.current_chat').toggleClass("slide_left");
+  $('.chat__list').addClass("slide_left");
+  $('.chat__start-new').addClass("chat__disappear");
+  $('.current_chat').scrollTop($('.current_chat').prop('scrollHeight'));
+<% else %>
+  error_msg =
+    `<div class='chat__errors'>
+      <%= j @conversation.errors.values.flatten.join(', ') %>
+     </div>`;
+  if($('.chat__errors').length == 0) {
+    $('.new_conversation').scrollTop(0);
+    $('.new_conversation').prepend(error_msg);
+  }
+<% end %>

@@ -87,6 +87,16 @@
         });
     }
 
+    function submitFrmHouseAjax(){
+        console.log("house");
+        var house_id = event.currentTarget.form.id.split("-",2)[1]
+        console.log(house_id);
+       $.ajax({
+             url : "/games/<%= @game.id.to_s %>/house/"+house_id,
+             data : $("form").serialize()
+        });
+    }
+
     function update_piece() {
         console.log("update piece");
         var piece = event.currentTarget.currentSrc.split("/",5)[4].split("_",2)[0]
@@ -113,7 +123,7 @@
         }
 
         var position = <%= @usergame1.position %>;
-        var piece = "<%= @usergame1.piece %>";
+        var piece = "<%= image_path(@usergame1.piece) %>";
         var user_id = <%= @user_id1 %>;
 
         var img = document.createElement("img");
@@ -127,7 +137,7 @@
         src.appendChild(img);
 
         var position = <%= @usergame2.position %>;
-        var piece = "<%= @usergame2.piece %>";
+        var piece = "<%= image_path(@usergame2.piece) %>";
         var user_id = <%= @user_id2 %>;
 
         var img = document.createElement("img");

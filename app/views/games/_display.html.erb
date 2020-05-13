@@ -4,13 +4,12 @@
             <%= msg %>
     <% end %>
     </h2>
-    <p style="text-align:center"><h2 style="color:black;">Game Name: </h2><h2><%= @game.title %><h4></p>
+    <br><h2 style="color:black;">Game Name: </h2><h2><%= @game.title %></h2><br><br>
+    <div class="throne-wrapper">
+    <%= image_tag("iron-throne.png", size: "100x100", class: "throne") %>
+    <%= image_tag User.find_by(id: @game.player_1_id).avatar.variant(resize: "50x50"), class: "rounded-circle" %>
+    </div>
     <p style="text-align:center"><h2 style="color:black;">Logged In User: </h2><h5><%= User.find_by_id(current_user.id).email %></h5></p>
-    <% if current_user.id == @game.turn_player_id %>
-        <p style="text-align:center"><h2 style="color:black">Your move</h2></p>
-    <% else %>
-        <p style="text-align:center"><h2 style="color:black">Not your move</h2></p>
-    <% end %>
     <p style="text-align:center"><h2 style="color:black;">Player 1: </h2><h5><%= User.find_by_id(@game.player_1_id).email %></h5></p>
     <p style="text-align:center"><h2 style="color:white;">Properties: </h2></p>
     <div class="owned-property-wrapper">
@@ -18,7 +17,7 @@
             <div class="owned-property-unit">
                 <div class="icon <%= prop.color %>"></div>
                 <div class="owned-property-name"><%= prop.name %></div>
-                <div id="mortgage<%= prop.div_id %>" class="mortgage">
+                <div id="mortgage<%= prop.div_id %>" class="mortgage-form">
                 <form id="mortgage<%= prop.div_id %>-<%= prop.div_id %>">
                     <% if prop.mortgaged == false %>
                         <input type='button' onclick="submitFrmMortgageAjax();" value="Mortgage">
@@ -27,12 +26,20 @@
                     <% end %>
                 </form>
                 </div>
+                <div id="house<%= prop.div_id %>" class="house-form">
+                <form id="house<%= prop.div_id %>-<%= prop.div_id %>">
+                    <input type='button' onclick="submitFrmHouseAjax();" value="+1 House"
+                    <% if prop.is_set_owned_by(current_user.id) == false %>
+                        disabled>
+                    <% else %>
+                        >
+                    <% end %>
+                </form>
+                </div>
             </div>
         <% end %>
     </div>
+    <br>
     <p style="text-align:center color:white;">Balance:
     <%= UserGame.find_by(user_id: @game.player_1_id, game_id: @game.id).balance %></p>
-    <% if @game.player_1_id == @game.turn_player_id %>
-        <p style="text-align:center"><h2 style="color:black">Player 1's turn to move</h2></p>
-    <% end %>
 </div>

@@ -1,3 +1,33 @@
+.rounded-circle {
+  grid-row: 1;
+  grid-column: 1;
+  border-radius: .5em;
+  z-index: 0;
+  }
+
+.throne-wrapper {
+  display: grid;
+  justify-items: center;
+  align-items: center;
+  justify-content: center;
+  grid-gap: 5px 5px;
+  grid-template-columns: repeat(1, 1fr);
+  grid-template-rows: 75px;
+  min-width: 0px;
+  min-height: 0px;
+}
+
+.throne {
+  grid-row: 1;
+  grid-column: 1;
+  position: relative;
+}
+
+.form-special {
+  width: 180px;
+  display: inline-block;
+}
+
 .box {
     background-color: gray;
     color: black;
@@ -8,7 +38,7 @@
 
 .wrapper {
     display: grid;
-    grid-gap: 0px;
+    gap: 0px;
     grid-template-columns: [col] 51px [col] 51px [col] 51px [col] 51px [col] 51px [col] 51px [col] 51px [col] 51px [col] 51px [col] 51px [col] 51px [col] 51px [col] 51px;
     grid-template-rows: [row] 51px [row] 51px [row] 51px [row] 51px [row] 51px [row] 51px [row] 51px [row] 51px [row] 51px [row] 51px ;
     grid-auto-rows: 51px;
@@ -25,15 +55,15 @@
   justify-items: center;
   align-items: center;
   justify-content: center;
-  grid-gap: 5px 5px;
-  grid-template-columns: [col] 76px [col] 76px [col] 76px;
-  grid-auto-rows: 76px;
+  grid-gap: 25px 5px;
+  grid-template-columns: [col] 81px [col] 81px [col] 81px;
+  grid-auto-rows: 81px;
 }
 
 .owned-property-unit {
   display: grid;
-  grid-template-rows: [row] 15px [row] 30px [row] 15px;
-  grid-gap: 5px 5px;
+  grid-template-rows: [row] 15px [row] 30px [row] 15px [row] 15px;
+  gap: 5px 5px;
   justify-items: center;
   align-items: center;
   justify-content: center;
@@ -55,13 +85,17 @@
   grid-row: row 2;
 }
 
-.mortgage {
+.mortgage-form {
   grid-row: row 3;  
+}
+
+.house-form {
+  grid-row: row 4;  
 }
 
 .top-property {
     display: grid;
-    grid-gap: 0px;
+    gap: 0px;
     grid-template-columns: [col] 51px;
     grid-template-rows: [row] 15px [row] 30px [row] 40px [row] 15px;
     border: 1px solid black;
@@ -69,7 +103,7 @@
 
 .bottom-property {
     display: grid;
-    grid-gap: 0px;
+    gap: 0px;
     grid-template-columns: [col] 51px;
     grid-template-rows: [row] 15px [row] 40px [row] 30px [row] 15px;
     border: 1px solid black;
@@ -79,7 +113,7 @@
 .left-property {
     grid-column: col / span 2;
     display: grid;
-    grid-gap: 0px;
+    gap: 0px;
     grid-template-columns: [col] 15px [col] 30px [col] 40px [col] 15px;
     grid-template-rows: [row] auto;
     border: 1px solid black;
@@ -88,7 +122,7 @@
 .right-property {
     grid-column: col 12 / span 2;
     display: grid;
-    grid-gap: 0px;
+    gap: 0px;
     grid-template-columns: [col] 15px [col] 40px [col] 30px [col] 15px;
     grid-template-rows: [row] auto;
     border: 1px solid black; 
@@ -212,8 +246,6 @@
     color: white;
     grid-column: col / span;
     grid-row: row 3 / span 2;
-    word-wrap: break-word;
-    word-break: break-all;
 }
 
 .bottom-faith-space {
@@ -295,8 +327,6 @@
     grid-row: row / span ;
     writing-mode: vertical-rl;
     transform: rotate(180deg); 
-    word-wrap: break-word;
-    word-break: break-all;
 }
 
 .left-property-footer {
@@ -323,22 +353,26 @@
 
 .right-property-footer {
     grid-column: col 4/ span;
+    grid-row: row / span ;
     writing-mode: vertical-rl;
     transform: rotate(180deg); 
 }
 
 .right-property-piece-area {
     grid-column: col 3/ span;
+    grid-row: row / span ;
 }
 
 .right-property-body {
     grid-column: col 2/ span;
+    grid-row: row / span ;
     writing-mode: vertical-rl;
     transform: rotate(180deg); 
 }
 
 .right-property-header {
     grid-column: col / span;
+    grid-row: row / span ;
 }
 
 
