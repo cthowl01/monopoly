@@ -104,7 +104,7 @@ ActiveRecord::Schema.define(version: 2020_05_12_020210) do
     t.integer "previous_position", default: 0
     t.integer "num_moves", default: 0
     t.integer "balance", default: 30
-    t.string "piece", default: "/assets/car_piece.png"
+    t.string "piece", default: "car_piece.png"
     t.boolean "jail", default: false
     t.integer "last_roll", default: [], array: true
     t.boolean "show_roll", default: true

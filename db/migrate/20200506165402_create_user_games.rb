@@ -7,7 +7,7 @@ class CreateUserGames < ActiveRecord::Migration[5.2]
       t.integer :previous_position, default: 0
       t.integer :num_moves, default: 0
       t.integer :balance, default: 30
-      t.string :piece, default: "/assets/car_piece.png"
+      t.string :piece, default: "car_piece.png"
       t.boolean :jail, default: false
       t.integer :last_roll, array: true, default: []
       t.boolean :show_roll, default: true

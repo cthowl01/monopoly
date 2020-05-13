@@ -72,7 +72,7 @@ class GamesController < ApplicationController
 
             @usergame = UserGame.find_by(game_id: @game.id, user_id: current_user.id)
 
-            @usergame.update_attributes(piece: "/assets/hat_piece.png")
+            @usergame.update_attributes(piece: "hat_piece.png")
 
             redirect_to game_path(@game)
     end
@@ -347,7 +347,7 @@ class GamesController < ApplicationController
 
     def update_piece
 
-        piece_url = "/assets/" + params[:piece] + "_piece.png"
+        piece_url = params[:piece] + "_piece.png"
 
         respond_to do |format|
             format.js
