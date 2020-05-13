@@ -1,4 +1,4 @@
 class ApplicationController < ActionController::Base
-  helper Chat::Engine.helpers
+  #helper Chat::Engine.helpers
     
 end

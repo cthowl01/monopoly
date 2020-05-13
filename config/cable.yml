@@ -6,6 +6,7 @@ test:
 
 production:
   adapter: redis
-  url: redis://redistogo:9925b4a95ccab549ba246f8f9e2807a8@pike.redistogo.com:10921/
+  url: redis://redistogo:74093836f7004cbf320f234ffbb54e08@hammerjaw.redistogo.com:10641/
+  #url: redis://redistogo:9925b4a95ccab549ba246f8f9e2807a8@pike.redistogo.com:10921/
   channel_prefix: monopoly_production
   # adapter: async
