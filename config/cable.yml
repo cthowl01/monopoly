@@ -6,6 +6,6 @@ test:
 
 production:
   adapter: redis
-  url: redis://h:p4dc574e24fc33c46d88b082f8c010a79e1617ac1d4d43d579c9a24e0b0fa8af6@ec2-52-73-229-189.compute-1.amazonaws.com:27459
+  url: redis://redistogo:9925b4a95ccab549ba246f8f9e2807a8@pike.redistogo.com:10921/
   channel_prefix: monopoly_production
   # adapter: async
