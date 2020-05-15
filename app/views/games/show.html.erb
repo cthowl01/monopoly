@@ -71,7 +71,8 @@
 
     function submitFrmMortgageAjax(){
         console.log("mortgage");
-        var mortgage_id = document.forms[0].id.split("-",2)[1]
+        var mortgage_id = img.id.split('-',1)[0];
+        console.log(mortgage_id);
        $.ajax({
              url : "/games/<%= @game.id.to_s %>/mortgage/"+mortgage_id,
              data : $("form").serialize()
@@ -80,7 +81,7 @@
 
     function submitFrmUnmortgageAjax(){
         console.log("unmortgage");
-        var mortgage_id = document.forms[0].id.split("-",2)[1]
+        var mortgage_id = img.id.split('-',1)[0];
        $.ajax({
              url : "/games/<%= @game.id.to_s %>/unmortgage/"+mortgage_id,
              data : $("form").serialize()
@@ -89,7 +90,7 @@
 
     function submitFrmHouseAjax(){
         console.log("house");
-        var house_id = event.currentTarget.form.id.split("-",2)[1]
+        var house_id = event.currentTarget.form.id.split("-",2)[1];
         console.log(house_id);
        $.ajax({
              url : "/games/<%= @game.id.to_s %>/house/"+house_id,
@@ -99,7 +100,7 @@
 
     function update_piece() {
         console.log("update piece");
-        var piece = event.currentTarget.currentSrc.split("/",5)[4].split("_",2)[0]
+        var piece = event.currentTarget.currentSrc.split("/",5)[4].split("_",2)[0];
         $.ajax({
              url : "/games/<%= @game.id.to_s %>/update_piece/"+piece,
              data : $("form").serialize()
