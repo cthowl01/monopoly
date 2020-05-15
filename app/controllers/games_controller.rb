@@ -251,8 +251,10 @@ class GamesController < ApplicationController
 
         @property = @game.properties.find_by(div_id: mortgaged_property)
     
-        @usergame.update_attributes(balance: @usergame.balance + @property.mortgage_cost)
-        @property.update_attributes(mortgaged: true)
+        if @property.owner_id == current_user.id 
+            @usergame.update_attributes(balance: @usergame.balance + @property.mortgage_cost)
+            @property.update_attributes(mortgaged: true)
+        end 
 
         @game.refresh_firebase
 
@@ -268,8 +270,10 @@ class GamesController < ApplicationController
 
         @property = @game.properties.find_by(div_id: mortgaged_property)
     
-        @usergame.update_attributes(balance: @usergame.balance - @property.mortgage_cost)
-        @property.update_attributes(mortgaged: false)
+        if @property.owner_id == current_user.id 
+            @usergame.update_attributes(balance: @usergame.balance - @property.mortgage_cost)
+            @property.update_attributes(mortgaged: false)
+        end
 
         @game.refresh_firebase
 

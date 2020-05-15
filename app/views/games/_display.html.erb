@@ -19,9 +19,17 @@
                 <div id="mortgage<%= prop.div_id %>" class="mortgage-form">
                 <form id="mortgage<%= prop.div_id %>-<%= prop.div_id %>">
                     <% if prop.mortgaged == false %>
-                        <input type='button' onclick="submitFrmMortgageAjax();" value="Mortgage">
+                        <input type='button' onclick="submitFrmMortgageAjax();" value="Mortgage" 
+                        <% if prop.owner_id != current_user.id %>
+                            disabled
+                        <% end %>
+                        >
                     <% else %>
-                        <input type='button' onclick="submitFrmUnmortgageAjax();" value="Unmortgage">
+                        <input type='button' onclick="submitFrmUnmortgageAjax();" value="Unmortgage"
+                        <% if prop.owner_id != current_user.id %>
+                            disabled
+                        <% end %>
+                        >
                     <% end %>
                 </form>
                 </div>
@@ -29,10 +37,9 @@
                 <form id="house<%= prop.div_id %>-<%= prop.div_id %>">
                     <input type='button' onclick="submitFrmHouseAjax();" value="+1 House"
                     <% if prop.is_set_owned_by(current_user.id) == false %>
-                        disabled>
-                    <% else %>
-                        >
+                        disabled
                     <% end %>
+                    >
                 </form>
                 </div>
             </div>

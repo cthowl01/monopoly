@@ -66,6 +66,8 @@ for (m = 0; m < 40; m++) {
 	}
 }
 
+var k;
+
 <% @game.properties.where("houses > ?", 0).each do |h| %>
 	
 	for (k = 0; k < <%= h.houses %>; k++) {

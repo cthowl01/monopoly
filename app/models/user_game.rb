@@ -36,7 +36,7 @@ class UserGame < ApplicationRecord
     end
 
     if property.houses != 0 
-      return rent * (property.houses + 3)
+      return rent * ((property.houses - 1) + 3)
     end
 
     if game.properties.where(color: property.color, owner_id: user.id).count == 

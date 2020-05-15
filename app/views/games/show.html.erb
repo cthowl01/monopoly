@@ -151,6 +151,53 @@
         var src = document.getElementById(position + "-1");
         src.appendChild(img);
 
+        var m;
+        var n;
+        for (m = 0; m < 40; m++) {
+            for (n = 0; n < 4; n++) {
+                if (document.contains(document.getElementById(m + "-2-" + n))) {
+                document.getElementById(m + "-2-" + n).remove();
+                }
+            }
+        }
+
+        var k;
+        <% @game.properties.where("houses > ?", 0).each do |h| %>
+            
+            for (k = 0; k < <%= h.houses %>; k++) {
+
+                var img = document.createElement("img");
+                img.src = "<%= image_path("house.png") %>";
+                img.setAttribute("height", "12");
+                img.setAttribute("width", "12");
+                img.setAttribute("id", <%= h.div_id %> + "-2-" + k);
+                console.log("House id:");
+                console.log(<%= h.div_id %> + "-2-" + k);
+                var src = document.getElementById(<%= h.div_id %> + "-2");
+                src.appendChild(img);
+                console.log("appended");
+            }
+
+        <% end %>
+
+        <% @game.properties.where("hotels > ?", 0).each do |h| %>
+
+        for (k = 0; k < <%= h.hotels %>; k++) {
+
+            var img = document.createElement("img");
+            img.src = "<%= image_path("hotel.png") %>";
+            img.setAttribute("height", "12");
+            img.setAttribute("width", "12");
+            img.setAttribute("id", <%= h.div_id %> + "-2-" + k);
+            console.log("Hotel id:");
+            console.log(<%= h.div_id %> + "-2-" + k);
+            var src = document.getElementById(<%= h.div_id %> + "-2");
+            src.appendChild(img);
+            console.log("appended");
+        }
+
+        <% end %>
+
         $(".draggable").draggable({ revert: 'invalid' });
         $(".droppable").droppable({
             drop: function( event, ui ) {
