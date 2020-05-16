@@ -15,12 +15,16 @@ class UserGame < ApplicationRecord
     end
   end
 
+  
+
 
   def calculate_new_position(result)
     new_position = self.position + result
     if new_position >= 40
       new_position = new_position - 40
       self.update_attributes(balance: self.balance+2)
+    elsif new_position < 0
+      new_position = new_position + 40
     end
     return new_position
   end

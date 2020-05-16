@@ -114,12 +114,14 @@ for (k = 0; k < <%= h.hotels %>; k++) {
 			<input type='button' id="rollbtn" onclick="submitFrmRollAjax();" value="Roll">
 		</form>
 	<% end %>
-<% else %>Not your turn to roll.<br>
-	<% if @usergame.last_roll[0] %>	
-	Last move: 
-	<% end %>
-	<br>
+<% else %>
+	Not your turn to roll.<br>
 <% end %>
+
+<% if @usergame.last_roll[0] && @game.moves.last != nil %>	
+	<br>Last move:<br><%= @game.moves.last.summary %>
+<% end %>
+<br><br>
 
 <% if @usergame.last_roll[0] == @usergame.last_roll[1] && @usergame.last_roll[0] %>	
 	<% if @usergame.num_double_rolls == 3 %>
@@ -127,16 +129,32 @@ for (k = 0; k < <%= h.hotels %>; k++) {
 		<form id="jail">
 			<input type='button' id="jailbtn" onclick="submitFrmJailAjax();" value="OK">
 		</form>
+	<% elsif @usergame.jail == true && @usergame.show_roll == true %>
+		<br>You rolled doubles and are now out of jail.<br>
+		<% @usergame.jail = false %>
 	<% end %>
 <% else %>
-	<% @usergame.update_attributes(num_double_rolls: 0) %>
+	<% if @usergame.jail == true && @usergame.num_jail_escape_rolls == 3 %>
+		<br>You have tried rolling doubles three times and must pay $5 to get out of jail.<br>
+		<% @usergame.update_attributes(num_jail_escape_rolls: 0) %>
+		<% @usergame.update_attributes(balance: @usergame.balance - 5) %>
+		<% @usergame.update_attributes(jail: false) %>		
+	<% elsif @usergame.jail == true && @usergame.show_buttons == true %>
+		<br>You did not roll doubles so you will remain in jail.<br>
+		<% @usergame.update_attributes(num_jail_escape_rolls: @usergame.num_jail_escape_rolls + 1) %>
+		<form id="no_purchase">
+			<input type='button' onclick="submitFrmPassAjax();" value="OK">
+		</form>
+	<% else %>
+		<% @usergame.update_attributes(num_double_rolls: 0) %>
+	<% end %>
 <% end %>
 
 <% if @usergame.position < @usergame.previous_position %>
 	<br>You collected $2 for passing Go.<br>
 <% end %>
 
-<% if @usergame.last_roll[0] %>
+<% if @usergame.last_roll[0] && @usergame.show_buttons == true && @usergame.jail == false %>
 		<% die1 = @usergame.last_roll[0].to_s + ".png" %>
 		<% die2 = @usergame.last_roll[1].to_s + ".png" %>
 		<%= image_tag(die1, size: '30x30') %> <%= image_tag(die2, size: '30x30') %>
@@ -209,15 +227,20 @@ for (k = 0; k < <%= h.hotels %>; k++) {
 					<% end %>
 
 				<% elsif @property.property_type == "chance" %>
-					Feeling lucky?
+					Feeling lucky?<br>
+					<% if @game.turn_player_id == current_user.id %>
+						<form id="chance">
+							<input type='button' id="chancebtn" onclick="submitFrmChanceAjax();" value="Draw a Card">
+						</form>
+					<% end %>
+					Your Card: <%= @output %>
+					<% if @game.turn_player_id == current_user.id %>
+						<form id="no_purchase">
+							<input type='button' id="passbtn" onclick="submitFrmPassAjax();" value="OK">
+						</form>
+					<% end %>
 					<% if @usergame.last_roll[0] == @usergame.last_roll[1] && @usergame.last_roll[0] %>
 							<br>Roll again<br>
-					<% else %>
-						<% if @game.turn_player_id == current_user.id %>
-							<form id="chance">
-								<input type='button' id="chancebtn" onclick="submitFrmChanceAjax();" value="OK">
-							</form>
-						<% end %>
 					<% end %>
 				<% elsif @property.property_type == "penalty" %>
 					Pay up!

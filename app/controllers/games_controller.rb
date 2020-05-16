@@ -67,6 +67,7 @@ class GamesController < ApplicationController
             @user.game_ids << @game.id
 
             @game.update_attributes(turn_player_id: @game.player_1_id)
+            @game.update_attributes(display_player_id: @game.player_1_id)
             @game.update_attributes(player_2_id: current_user.id)
             @game.update_attributes(current_status: "active")
 
@@ -94,36 +95,16 @@ class GamesController < ApplicationController
         @result2 = dice.result
         @usergame.last_roll << dice.result
 
-        @usergame.update_attributes(previous_position: @usergame.position)
-
-        @usergame.update_attributes(position: @usergame.calculate_new_position(@result + @result2))
-
-        firebase_url    = 'https://fir-chess-270721.firebaseio.com/';
-        firebase_secret = '8g8o1V0UsNy7O1I4kcRXlClM8vo4V4Yi44pQOLqt';
-        firebase = Firebase::Client.new(firebase_url, firebase_secret)
-
-        puts "firebase is #{firebase}"
-
-        path = "mgames/" + @game.firebase_id
-
-        puts "Before firebase"
-
-        refreshVal = firebase.get(path + "/refresh")
-
-        if refreshVal.body == true
-            puts "Firebase set to false"
-            response = firebase.update(path, {
-                :refresh => false
-            })
-        else
-            puts "Firebase set to true"
-            response = firebase.update(path, {
-                :refresh => true
-                })
+        if @usergame.jail == false
+            @usergame.update_attributes(previous_position: @usergame.position)
+            @usergame.update_attributes(position: @usergame.calculate_new_position(@result + @result2))
         end
+
+        @game.refresh_firebase
             
         if @result != @result2
             @usergame.toggle_show_rolls
+            @game.toggle_display_user
         elsif @usergame.jail != true
             @usergame.update_attributes(num_double_rolls: @usergame.num_double_rolls+1)
         end
@@ -173,6 +154,8 @@ class GamesController < ApplicationController
         
         flash.now[:notice] = "A Lannister always pays his debts."
 
+        @game.moves << Move.new(summary: "Player " + current_user.id.to_s + " lands on " + @property.name + " and pays " + @rent + " in rent.")
+
         if @usergame.last_roll[0] != @usergame.last_roll[1]
             @usergame.update_attributes(show_buttons: false)
             @game.toggle_player_turn
@@ -193,6 +176,8 @@ class GamesController < ApplicationController
         else
             flash.now[:notice] = "Insufficient funds"
         end
+
+        @game.moves << Move.new(summary: "Player " + current_user.id.to_s + " purchases " + @property.name)
     
         if @usergame.last_roll[0] != @usergame.last_roll[1]
             @usergame.update_attributes(show_buttons: false)
@@ -228,6 +213,8 @@ class GamesController < ApplicationController
         else
             flash.now[:notice] = "You're broke!"
         end
+
+        @game.moves << Move.new(summary: "Player " + current_user.id.to_s + " is penalized $2.")
     
         if @usergame.last_roll[0] != @usergame.last_roll[1]
             @usergame.update_attributes(show_buttons: false)
@@ -312,12 +299,59 @@ class GamesController < ApplicationController
 
     def chance
 
-        if @usergame.last_roll[0] != @usergame.last_roll[1]
-            @usergame.update_attributes(show_buttons: false)
-            @game.toggle_player_turn
+        dice = GamesDice.create '1d9'
+        dice.roll
+        @result = dice.result
+
+        case @result
+        when 1
+            @output = "The Night King's army approaches. Go back three spaces."
+            @usergame.update_attributes(previous_position: @usergame.position)
+            @usergame.update_attributes(position: @usergame.calculate_new_position(-3))
+        when 2
+            @output = "You and your Dothraki horder are ready to conquer! Advance to Go. Collect $2."
+            @usergame.update_attributes(previous_position: @usergame.position)
+            @usergame.update_attributes(position: 0)
+            @usergame.update_attributes(balance: @usergame.balance + 2)
+        when 3
+            @output = "A Lannister always pays his debts. Pay each player $1."
+            @usergame.update_attributes(balance: @usergame.balance - 1)
+            @otherusergame = UserGame.where(game_id: @game.id).where.not(user_id: current_user.id).first
+            @otherusergame.update_attributes(balance: @usergame.balance + 1)
+        when 4
+            @output = "The Citadel sends a special maester to treat your Greyscale. Pay $1."
+            @usergame.update_attributes(balance: @usergame.balance - 1)
+        when 5
+            @output = "You win the King's Tourney. Claim your prize. Collect $1 from each player."
+            @usergame.update_attributes(balance: @usergame.balance + 1)
+            @otherusergame = UserGame.where(game_id: @game.id).where.not(user_id: current_user.id).first
+            @otherusergame.update_attributes(balance: @usergame.balance - 1)
+        when 6
+            @output = "Your Dire Wolf saves you from an assasin. Get out of jail free."
+            @usergame.update_attributes(can_get_out_of_jail_free: true)
+        when 7
+            @output = "You are sentenced to join the Night's Watch at the Wall. Go to Jail. Do not pass Go. Do not collect $2."
+            @usergame.update_attributes(previous_position: @usergame.position)
+            @usergame.update_attributes(position: 10)
+            @usergame.update_attributes(jail: true)
+        when 8
+            @output = "Melisandre's mysterious ritual brings you back from the Grave. Advance to Go. Collect $2."
+            @usergame.update_attributes(previous_position: @usergame.position)
+            @usergame.update_attributes(position: 0)
+            @usergame.update_attributes(balance: @usergame.balance + 2)
+        else
+            @output = "Littlefinger pays his spies. Collect $1."
+            @usergame.update_attributes(balance: @usergame.balance + 1)
         end
 
-        @game.refresh_firebase
+        @game.moves << Move.new(summary: "Player " + current_user.id.to_s + " lands on Chance with the following outcome: " + @output)
+
+        # if @usergame.last_roll[0] != @usergame.last_roll[1]
+        #     @usergame.update_attributes(show_buttons: false)
+        #     @game.toggle_player_turn
+        # end
+
+        #@game.refresh_firebase
 
         respond_to do |format|
             format.js
@@ -328,6 +362,8 @@ class GamesController < ApplicationController
     def jail
 
         @usergame.update_attributes(jail: true, position: 10, num_double_rolls: 0)
+
+        @game.moves << Move.new(summary: "Player " + current_user.id.to_s + " goes to jail.")
 
         if @usergame.last_roll[0] != @usergame.last_roll[1]
             @usergame.update_attributes(show_buttons: false)
