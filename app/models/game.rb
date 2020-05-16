@@ -7,6 +7,7 @@ class Game < ApplicationRecord
     has_many :properties
     has_many :user_games
     has_many :users, through: :user_games
+    has_many :moves
 
     after_create :lay_out_board!
 
@@ -91,6 +92,14 @@ class Game < ApplicationRecord
           self.update_attributes(turn_player_id: self.player_1_id)
           usergame = UserGame.find_by(game_id: self.id, user_id: self.player_2_id)
           usergame.update_attributes(num_moves: usergame.num_moves + 1)
+        end
+      end
+
+      def toggle_display_user
+        if self.display_player_id == self.player_1_id
+          self.update_attributes(display_player_id: self.player_2_id)
+        else
+          self.update_attributes(display_player_id: self.player_1_id)
         end
       end
 
