@@ -144,7 +144,6 @@ for (k = 0; k < <%= h.hotels %>; k++) {
 		Player rolls a <%= @usergame.last_roll[0] + @usergame.last_roll[1] %> and lands on <%= @property.name %>.
 		<br>
 
-
 	<% if @game.turn_player_id == current_user.id && @usergame.show_buttons == true %>
 
 				<% if @property.property_type == "regular" || @property.property_type == "faith" || @property.property_type == "offer" %>

@@ -18,13 +18,14 @@
                 <div class="owned-property-name"><%= prop.name %></div>
                 <div id="mortgage<%= prop.div_id %>" class="mortgage-form">
                 <form id="mortgage<%= prop.div_id %>-<%= prop.div_id %>">
-                    <% if prop.mortgaged == false %>
+                    <% if prop.mortgaged == false  %>
                         <input type='button' onclick="submitFrmMortgageAjax();" value="Mortgage"
-                        <% if prop.owner_id == current_user.id %>
-                        >
-                        <% else %>
-                        disabled>
+                        <% if prop.owner_id != current_user.id ||
+                        ( @game.properties.where(color: prop.color).where("houses > ?", 0).count > 0 ||
+                          @game.properties.where(color: prop.color).where("hotels > ?", 0).count > 0)  %>
+                            disabled
                         <% end %>
+                        >
                     <% else %>
                         <input type='button' onclick="submitFrmUnmortgageAjax();" value="Unmortgage"
                         <% if prop.owner_id == current_user.id %>

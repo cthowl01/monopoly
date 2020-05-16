@@ -69,9 +69,9 @@
         });
     }
 
-    function submitFrmMortgageAjax(){
+    function submitFrmMortgageAjax(button){
         console.log("mortgage");
-        var mortgage_id = img.id.split('-',1)[0];
+        var mortgage_id = button.parentElement.id.split("-",2)[1];
         console.log(mortgage_id);
        $.ajax({
              url : "/games/<%= @game.id.to_s %>/mortgage/"+mortgage_id,
@@ -79,9 +79,9 @@
         });
     }
 
-    function submitFrmUnmortgageAjax(){
+    function submitFrmUnmortgageAjax(button){
         console.log("unmortgage");
-        var mortgage_id = img.id.split('-',1)[0];
+        var mortgage_id = button.parentElement.id.split("-",2)[1];
        $.ajax({
              url : "/games/<%= @game.id.to_s %>/unmortgage/"+mortgage_id,
              data : $("form").serialize()
