@@ -159,7 +159,7 @@ for (k = 0; k < <%= h.hotels %>; k++) {
 		<% die2 = @usergame.last_roll[1].to_s + ".png" %>
 		<%= image_tag(die1, size: '30x30') %> <%= image_tag(die2, size: '30x30') %>
 		<br>
-		Player rolls a <%= @usergame.last_roll[0] + @usergame.last_roll[1] %> and lands on <%= @property.name %>.
+		Player <%= current_user.id %> rolls a <%= @usergame.last_roll[0] + @usergame.last_roll[1] %> and lands on <%= @property.name %>.
 		<br>
 
 	<% if @game.turn_player_id == current_user.id && @usergame.show_buttons == true %>

@@ -46,6 +46,10 @@ class GamesController < ApplicationController
 
         @game.update_attributes(firebase_id: response.body["name"]);
 
+        @usergame = UserGame.find_by(game_id: @game.id, user_id: current_user.id)
+
+        @usergame.update_attributes(show_buttons: true)
+
         redirect_to games_path
     end
 
@@ -67,7 +71,6 @@ class GamesController < ApplicationController
             @user.game_ids << @game.id
 
             @game.update_attributes(turn_player_id: @game.player_1_id)
-            @game.update_attributes(display_player_id: @game.player_1_id)
             @game.update_attributes(player_2_id: current_user.id)
             @game.update_attributes(current_status: "active")
 
@@ -317,7 +320,7 @@ class GamesController < ApplicationController
             @output = "A Lannister always pays his debts. Pay each player $1."
             @usergame.update_attributes(balance: @usergame.balance - 1)
             @otherusergame = UserGame.where(game_id: @game.id).where.not(user_id: current_user.id).first
-            @otherusergame.update_attributes(balance: @usergame.balance + 1)
+            @otherusergame.update_attributes(balance: @otherusergame.balance + 1)
         when 4
             @output = "The Citadel sends a special maester to treat your Greyscale. Pay $1."
             @usergame.update_attributes(balance: @usergame.balance - 1)
@@ -325,7 +328,7 @@ class GamesController < ApplicationController
             @output = "You win the King's Tourney. Claim your prize. Collect $1 from each player."
             @usergame.update_attributes(balance: @usergame.balance + 1)
             @otherusergame = UserGame.where(game_id: @game.id).where.not(user_id: current_user.id).first
-            @otherusergame.update_attributes(balance: @usergame.balance - 1)
+            @otherusergame.update_attributes(balance: @otherusergame.balance - 1)
         when 6
             @output = "Your Dire Wolf saves you from an assasin. Get out of jail free."
             @usergame.update_attributes(can_get_out_of_jail_free: true)

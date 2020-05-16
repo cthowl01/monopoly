@@ -74,7 +74,6 @@ ActiveRecord::Schema.define(version: 2020_05_16_202955) do
     t.string "current_user"
     t.integer "result"
     t.integer "turn_player_id"
-    t.integer "display_player_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "user_id"
