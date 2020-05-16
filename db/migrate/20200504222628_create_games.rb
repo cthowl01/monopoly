@@ -8,7 +8,6 @@ class CreateGames < ActiveRecord::Migration[5.2]
       t.string :current_user
       t.integer :result
       t.integer :turn_player_id
-      t.integer :display_player_id
 
       t.timestamps
     end
