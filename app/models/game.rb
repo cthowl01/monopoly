@@ -95,14 +95,6 @@ class Game < ApplicationRecord
         end
       end
 
-      def toggle_display_user
-        if self.display_player_id == self.player_1_id
-          self.update_attributes(display_player_id: self.player_2_id)
-        else
-          self.update_attributes(display_player_id: self.player_1_id)
-        end
-      end
-
       def player_1
         User.find_by_id(player_1_id)
       end

@@ -8,10 +8,14 @@ class UserGame < ApplicationRecord
 
     if game.turn_player_id == user.id
       self.update_attributes(show_roll: false)
+      self.update_attributes(show_buttons: true)
       otherusergame.update_attributes(show_roll: true)
+      otherusergame.update_attributes(show_buttons: true)
     else
       self.update_attributes(show_roll: true)
+      self.update_attributes(show_buttons: false)
       otherusergame.update_attributes(show_roll: false)
+      otherusergame.update_attributes(show_buttons: true)
     end
   end
 

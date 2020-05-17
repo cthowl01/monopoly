@@ -48,7 +48,7 @@ class GamesController < ApplicationController
 
         @usergame = UserGame.find_by(game_id: @game.id, user_id: current_user.id)
 
-        @usergame.update_attributes(show_buttons: true)
+        #@usergame.update_attributes(show_buttons: false)
 
         redirect_to games_path
     end
@@ -112,7 +112,7 @@ class GamesController < ApplicationController
             @usergame.update_attributes(num_double_rolls: @usergame.num_double_rolls+1)
         end
 
-        @usergame.update_attributes(show_buttons: true)
+        #@usergame.update_attributes(show_buttons: true)
 
         @property = @game.properties.find_by(div_id: @usergame.position)
 
@@ -160,7 +160,7 @@ class GamesController < ApplicationController
         @game.moves << Move.new(summary: "Player " + current_user.id.to_s + " lands on " + @property.name + " and pays " + @rent + " in rent.")
 
         if @usergame.last_roll[0] != @usergame.last_roll[1]
-            @usergame.update_attributes(show_buttons: false)
+            @usergame.toggle_show_rolls
             @game.toggle_player_turn
         end
 
@@ -183,7 +183,7 @@ class GamesController < ApplicationController
         @game.moves << Move.new(summary: "Player " + current_user.id.to_s + " purchases " + @property.name)
     
         if @usergame.last_roll[0] != @usergame.last_roll[1]
-            @usergame.update_attributes(show_buttons: false)
+            @usergame.toggle_show_rolls
             @game.toggle_player_turn
         end
 
@@ -198,7 +198,7 @@ class GamesController < ApplicationController
     def pass
         
         if @usergame.last_roll[0] != @usergame.last_roll[1]
-            @usergame.update_attributes(show_buttons: false)
+            @usergame.toggle_show_rolls
             @game.toggle_player_turn
         end
 
@@ -220,7 +220,7 @@ class GamesController < ApplicationController
         @game.moves << Move.new(summary: "Player " + current_user.id.to_s + " is penalized $2.")
     
         if @usergame.last_roll[0] != @usergame.last_roll[1]
-            @usergame.update_attributes(show_buttons: false)
+            @usergame.toggle_show_rolls
             @game.toggle_player_turn
         end
 
@@ -369,7 +369,7 @@ class GamesController < ApplicationController
         @game.moves << Move.new(summary: "Player " + current_user.id.to_s + " goes to jail.")
 
         if @usergame.last_roll[0] != @usergame.last_roll[1]
-            @usergame.update_attributes(show_buttons: false)
+            @usergame.toggle_show_rolls
             @game.toggle_player_turn
         end
 
