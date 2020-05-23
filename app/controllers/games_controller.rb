@@ -107,7 +107,7 @@ class GamesController < ApplicationController
             
         if @result != @result2
             @usergame.toggle_show_rolls
-            @game.toggle_player_turn
+            # @game.toggle_player_turn
         elsif @usergame.jail != true
             @usergame.update_attributes(num_double_rolls: @usergame.num_double_rolls+1)
         end
@@ -356,7 +356,7 @@ class GamesController < ApplicationController
         #     @game.toggle_player_turn
         # end
 
-        #@game.refresh_firebase
+        # @game.refresh_firebase
 
         respond_to do |format|
             format.js
