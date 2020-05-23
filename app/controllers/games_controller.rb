@@ -107,7 +107,7 @@ class GamesController < ApplicationController
             
         if @result != @result2
             @usergame.toggle_show_rolls
-            @game.toggle_display_user
+            @game.toggle_player_turn
         elsif @usergame.jail != true
             @usergame.update_attributes(num_double_rolls: @usergame.num_double_rolls+1)
         end
@@ -157,7 +157,7 @@ class GamesController < ApplicationController
         
         flash.now[:notice] = "A Lannister always pays his debts."
 
-        @game.moves << Move.new(summary: "Player " + current_user.id.to_s + " lands on " + @property.name + " and pays " + @rent + " in rent.")
+        @game.moves << Move.new(summary: "Player " + current_user.id.to_s + " lands on " + @property.name + " and pays " + @rent.to_s + " in rent.")
 
         if @usergame.last_roll[0] != @usergame.last_roll[1]
             @usergame.toggle_show_rolls
@@ -337,6 +337,8 @@ class GamesController < ApplicationController
             @usergame.update_attributes(previous_position: @usergame.position)
             @usergame.update_attributes(position: 10)
             @usergame.update_attributes(jail: true)
+            @usergame.update_attributes(show_buttons: false)
+            @game.toggle_player_turn
         when 8
             @output = "Melisandre's mysterious ritual brings you back from the Grave. Advance to Go. Collect $2."
             @usergame.update_attributes(previous_position: @usergame.position)

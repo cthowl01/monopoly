@@ -99,6 +99,7 @@
     grid-template-columns: [col] 51px;
     grid-template-rows: [row] 15px [row] 30px [row] 40px [row] 15px;
     border: 1px solid black;
+    grid-row: row / span 2;
 }
 
 .bottom-property {
@@ -141,50 +142,8 @@
 }
 
 .a {
-    grid-column: col / span 2;
-    grid-row: row / span 2 ;
-}
-.b {
-    grid-column: col 3 / span ;
-    grid-row: row / span 2;
-}
-.c {
-    grid-column: col 4 / span ;
-    grid-row: row / span 2;
-}
-.d {
-    grid-column: col 5 / span  ;
-    grid-row: row / span 2 ;
-}
-
-.e {
-    grid-column: col 6 / span ;
-    grid-row: row / span 2;
-}
-
-.f {
-    grid-column: col 7 / span ;
-    grid-row: row / span 2;
-}
-
-.g {
-    grid-column: col 8 / span ;
-    grid-row: row / span 2;
-}
-
-.h {
-    grid-column: col 9 / span ;
-    grid-row: row / span 2;
-}
-
-.ii {
-    grid-column: col 10 / span ;
-    grid-row: row / span 2;
-}
-
-.jj {
-    grid-column: col 11 / span ;
-    grid-row: row / span 2;
+  grid-column: col / span 2;
+  grid-row: row / span 2 ;
 }
 
 .go {
@@ -198,41 +157,6 @@
 }
 .j {
     grid-column: col 3 / span ;
-    
-}
-.k {
-    grid-column: col 4 / span ;
-    
-}
-.l {
-    grid-column: col 5 / span  ;
-    
-}
-.m {
-    grid-column: col 6 / span ;
-    
-}
-.n {
-    grid-column: col 7 / span ;
-    
-}
-.o {
-    grid-column: col 8 / span  ;
-    
-}
-
-.p {
-    grid-column: col 9 / span  ;
-    
-}
-
-.q {
-    grid-column: col 10 / span ;
-   
-}
-
-.r {
-    grid-column: col 11 / span ;
     
 }
 
