@@ -109,17 +109,20 @@
 
     function init_draggables_and_droppables() {
 
+        console.log("BEGIN INIT");
+
         var i;
         for (i = 0; i < 40; i++) {
             if (document.contains(document.getElementById(i + "-1-" + <%= @user_id1 %>))) {
             document.getElementById(i + "-1-" + <%= @user_id1 %>).remove();
             }
-        }
-
-        var j;
-        for (j = 0; j < 40; j++) {
-            if (document.contains(document.getElementById(j + "-1-" + <%= @user_id2 %>))) {
-            document.getElementById(j + "-1-" + <%= @user_id2 %>).remove();
+            if (document.contains(document.getElementById(i + "-1-" + <%= @user_id2 %>))) {
+            document.getElementById(i + "-1-" + <%= @user_id2 %>).remove();
+            }
+            for (j = 0; j < 4; j++) {
+                if (document.contains(document.getElementById(i + "-2-" + j))) {
+                document.getElementById(i + "-2-" + j).remove();
+                }
             }
         }
 
@@ -151,16 +154,6 @@
 
         var src = document.getElementById(position + "-1");
         src.appendChild(img);
-
-        var m;
-        var n;
-        for (m = 0; m < 40; m++) {
-            for (n = 0; n < 4; n++) {
-                if (document.contains(document.getElementById(m + "-2-" + n))) {
-                document.getElementById(m + "-2-" + n).remove();
-                }
-            }
-        }
 
         var k;
         <% @game.properties.where("houses > ?", 0).each do |h| %>
@@ -198,17 +191,6 @@
         }
 
         <% end %>
-
-        $(".draggable").draggable({ revert: 'invalid' });
-        $(".droppable").droppable({
-            drop: function( event, ui ) {
-                var pid = $(this).parent().attr("id");
-                console.log("Parent ID:")
-                console.log(pid);
-                console.log("drop");
-                
-            }     
-        });
 
     }
 
